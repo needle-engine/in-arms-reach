@@ -9,6 +9,9 @@ export class HoleCutter extends Behaviour {
     private static DepthCutMat: ShaderMaterial;
 
     onEnable() {
+
+        // TODO do this for all children?
+
         if (!HoleCutter.DepthCutMat) {
             HoleCutter.DepthCutMat = new ShaderMaterial({
                 depthWrite: true,

@@ -1,5 +1,6 @@
-import { AssetReference, Behaviour, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, PointerEventData, WebXRPlaneTracking, instantiate, serializable } from "@needle-tools/engine";
+import { Animator, AssetReference, Behaviour, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, PointerEventData, WebXRPlaneTracking, instantiate, serializable } from "@needle-tools/engine";
 import { CustomDepthSensing } from "./WallReveal";
+import { Matrix4, Quaternion, Vector3 } from "three";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -40,11 +41,32 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         const obj = CustomDepthSensing.instance.revealObject;
         if (obj && args.normal) {
             const normal = args.normal.clone();
-            args.object.localToWorld(normal);
+            // transform normal direction to world space
+            const worldRotation = args.object.worldQuaternion;
+            normal.applyQuaternion(worldRotation);
+            const normalOffsetPoint = args.point.clone().sub(normal);
+
+            console.log(args.point, normalOffsetPoint);
+            Gizmos.DrawLine(args.point, normalOffsetPoint, 0xff0000, 2);
+
+            const mat = new Matrix4();
+            mat.lookAt(args.point, normalOffsetPoint, new Vector3(0,1,0));
+            const worldRot = new Quaternion();
+            worldRot.setFromRotationMatrix(mat);
+            
             const clone = instantiate(obj, {
                 position: args.point,
+                rotation: worldRot,
             });
-            clone?.lookAt(normal.add(args.point));
+
+            if (!clone) return;
+
+            GameObject.setActive(clone, true);
+
+            // parent to wall for poor mans anchoring
+            args.object.add(clone);
+
+            // clone?.lookAt(normal.add(args.point));
         }
 
         // spawn "cleanup" object on wall
