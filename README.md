@@ -1,5 +1,9 @@
 # Your Project Name Here
 
+**HERE IS A GUIDE TO GET YOU STARTED ON YOUR [MAYBE] FIRST REPOSITORY**:
+
+<https://docs.codeberg.org/getting-started/first-repository/#2.-clone-the-repository>
+
 Obviously, this is not what your README should say on-submission. Change it. Yes, the whole thing.
 
 This is where a description of your project will go. README.md files support [Markdown syntax](https://www.markdownguide.org/basic-syntax/).
