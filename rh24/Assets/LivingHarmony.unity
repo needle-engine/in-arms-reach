@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438e3fec673b477cbc6d39ba011bf158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compilerDirectory: ../needle/LivingHarmony/node_modules/@needle-tools/needle-component-compiler/src
+  compilerDirectory: ../needle/node_modules/@needle-tools/needle-component-compiler/src
   Debug: 0
 --- !u!114 &448345037
 MonoBehaviour:
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986a3a93ac16ec0428d8989979ec0966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DirectoryName: ../needle/LivingHarmony
+  DirectoryName: ../needle
   RemoteUrl: 
   AutoExport: 1
   AutoCompress: 1

@@ -15,7 +15,7 @@ MonoBehaviour:
   Scenes:
   - Path: Assets/LivingHarmony.unity
     Projects:
-    - ProjectPath: ../needle/LivingHarmony
+    - ProjectPath: ../needle
     BuilderScene: 
   Projects:
-  - ProjectPath: ../needle/LivingHarmony
+  - ProjectPath: ../needle
