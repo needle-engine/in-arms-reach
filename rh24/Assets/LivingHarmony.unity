@@ -8684,6 +8684,7 @@ GameObject:
   - component: {fileID: 448345038}
   - component: {fileID: 448345037}
   - component: {fileID: 448345036}
+  - component: {fileID: 448345039}
   m_Layer: 0
   m_Name: Export Info
   m_TagString: EditorOnly
@@ -8740,6 +8741,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &448345039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448345035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df10eacf89941469617695036f56e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repositoryUrl: https://github.com/hybridherbst/in-arms-reach.git
 --- !u!1 &453763673
 GameObject:
   m_ObjectHideFlags: 0
@@ -23039,6 +23053,18 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6899345621076829475, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.00064645003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899345621076829475, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.00064645003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899345621076829475, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.00064645003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899345621076829475, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -23048,7 +23074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6899345621076829475, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.97
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6899345621076829475, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_LocalRotation.w
