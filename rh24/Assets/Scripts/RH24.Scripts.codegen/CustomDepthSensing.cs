@@ -9,6 +9,7 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public UnityEngine.GameObject @revealObject;
 		public UnityEngine.GameObject @scenePlacement;
+		public UnityEngine.GameObject @scenesRoot;
 		public void OnEnable(){}
 		public void OnDisable(){}
 		public void pointerMove(object @args){}
