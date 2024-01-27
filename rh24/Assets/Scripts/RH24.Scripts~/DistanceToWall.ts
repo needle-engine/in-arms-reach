@@ -1,6 +1,8 @@
 import { Animator, AssetReference, Behaviour, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, PointerEventData, WebXRPlaneTracking, getParam, instantiate, serializable } from "@needle-tools/engine";
 import { CustomDepthSensing } from "./WallReveal";
 import { Matrix4, Quaternion, Ray, Vector3 } from "three";
+import { Renderer } from "@needle-tools/engine";
+import { InstancingUtil } from "@needle-tools/engine";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -103,6 +105,14 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         const scale = (Math.random() * 0.4 + 0.6) * 0.3;
         clone.scale.set(scale, scale, scale);
 
+        // enable instancing on the clone
+        const renderers = clone.getComponentsInChildren(Renderer)!;
+        for (const renderer of renderers) {
+            //if (!renderer.enableInstancing) renderer.enableInstancing = [];
+            //renderer.enableInstancing[0] = true;
+            //InstancingUtil.markDirty(renderer.gameObject);
+        }
+
         if (!clone) return;
 
         GameObject.setActive(clone, true);
@@ -128,6 +138,11 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     private ray: Ray = new Ray();
     update() {
         if (!this.isPlacing) return;
+        // extra guard: if no pointer is down anymore, isPlacing should be false
+        if (this.context.input.getPointerPressedCount() === 0) {
+            this.isPlacing = false;
+            return;
+        }
     
         const allWalls = this.planes.trackedPlanes;
         const wallObjects = Array.from(allWalls).map(x => x.mesh!);

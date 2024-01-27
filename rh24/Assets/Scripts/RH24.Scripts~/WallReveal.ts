@@ -6,10 +6,10 @@ import { ShaderChunk, AgXToneMapping, Vector3, Quaternion } from "three";
 
 export class CustomDepthSensing extends Behaviour {
 
-    @serializable()
+    @serializable(GameObject)
     revealObject: GameObject;
 
-    @serializable()
+    @serializable(GameObject)
     scenePlacement: GameObject;
 
     private static _instance: CustomDepthSensing;
@@ -18,6 +18,9 @@ export class CustomDepthSensing extends Behaviour {
     } 
 
     firstPlacement(worldPoint: Vector3, worldQuaternion: Quaternion) {
+
+        if (!this.scenePlacement) return;
+
         // we just want to rotate this.
         // assumes that worldQuaternion is still aligned "upwards"
         this.scenePlacement.quaternion.copy(worldQuaternion);
