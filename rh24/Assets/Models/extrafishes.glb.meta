@@ -18,7 +18,7 @@ ScriptedImporter:
   _importBlendShapeNames: 1
   _importNormals: 0
   _importTangents: 0
-  _importAnimations: 2
+  _importAnimations: 1
   _addAnimatorComponent: 0
   _animationLoopTime: 1
   _animationLoopPose: 0
@@ -28,13 +28,13 @@ ScriptedImporter:
   _textureCompression: -50
   optimizeGameObjects: 0
   materials:
-  - {instanceID: 0}
-  - {instanceID: 0}
-  - {instanceID: 0}
+  - {fileID: -1261924704557284698, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
+  - {fileID: -667950075575106978, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
+  - {fileID: -2840136634868304333, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
   textures:
-  - {instanceID: 0}
-  - {instanceID: 0}
-  - {instanceID: 0}
+  - {fileID: 5897058724234939021, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
+  - {fileID: 1034606291459923, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
+  - {fileID: -4646051887705271151, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
   hasSceneData: 1
   hasAnimationData: 1
   hasMaterialData: 1
@@ -43,13 +43,13 @@ ScriptedImporter:
   - name: Scene
   _extensions: []
   _textures:
-  - texture: {instanceID: 0}
+  - texture: {fileID: 5897058724234939021, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
     shouldBeLinear: 0
     shouldBeNormalMap: 0
-  - texture: {instanceID: 0}
+  - texture: {fileID: 1034606291459923, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
     shouldBeLinear: 1
     shouldBeNormalMap: 1
-  - texture: {instanceID: 0}
+  - texture: {fileID: -4646051887705271151, guid: 765c400c98ce44aa18ec7744f1ca374e, type: 3}
     shouldBeLinear: 0
     shouldBeNormalMap: 0
   _mainAssetIdentifier: scenes/Scene
