@@ -3,6 +3,7 @@ import { CustomDepthSensing } from "./WallReveal";
 import { Matrix4, Quaternion, Ray, Vector3 } from "three";
 import { Renderer } from "@needle-tools/engine";
 import { InstancingUtil } from "@needle-tools/engine";
+import { NeedleXRController } from "@needle-tools/engine";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -14,13 +15,18 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     // 2: clean occlusion depth with "cleaner" objects that reset depth to far plane
     // 3: draw content of the world
 
-    private planes: WebXRPlaneTracking;
     private hadFirstPlacement: boolean = false;
 
+    private static _instances: GameObject[] = [];
+
     onEnable() {
-        this.planes = GameObject.findObjectOfType(WebXRPlaneTracking)!;
         // check if we have a raycaster, add one otherwise
         this.gameObject.addNewComponent(ObjectRaycaster);
+        DistanceToWall._instances.push(this.gameObject);
+    }
+
+    onDisable() {
+        DistanceToWall._instances = DistanceToWall._instances.filter(x => x !== this.gameObject);
     }
 
     onPointerEnter(args: PointerEventData) {
@@ -30,6 +36,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         }
     }
 
+    /*
     onPointerMove(args: PointerEventData) {
         if (debug) {
             console.log("POINTER MOVE")
@@ -37,6 +44,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
             Gizmos.DrawLine(args.point, args.event.space.worldPosition);
         }
     }
+    */
 
     onPointerExit(args: PointerEventData) {
         if (debug) {
@@ -44,12 +52,14 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         }
     }
 
+    private lastOrigin: any;
     private lastSpace: GameObject;
     onPointerDown(args: PointerEventData) {
         if (!args.point) return;
         
         this.isPlacing = true;
         this.lastPlacementPosition.copy(args.point);
+        this.lastOrigin = args.event.origin;
         this.lastSpace = args.event.space as GameObject;
 
         if (debug) {
@@ -79,7 +89,6 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         const normalOffsetPoint = args.point.clone().sub(normal);
 
         if (debug) {
-            console.log(args.point, normalOffsetPoint);
             Gizmos.DrawLine(args.point, normalOffsetPoint, 0xff0000, 2);
         }
         const mat = new Matrix4();
@@ -137,26 +146,35 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     private ray: Ray = new Ray();
     update() {
-        if (!this.isPlacing) return;
+
         // extra guard: if no pointer is down anymore, isPlacing should be false
-        if (this.context.input.getPointerPressedCount() === 0) {
+        if (this.isPlacing && this.context.input.getPointerPressedCount() === 0) {
+            console.error("oops");
             this.isPlacing = false;
-            return;
         }
+        
+        if (!this.isPlacing) return;
     
-        const allWalls = this.planes.trackedPlanes;
-        const wallObjects = Array.from(allWalls).map(x => x.mesh!);
+        const wallObjects = DistanceToWall._instances;
 
         // raycast into the scene
-        this.ray.set(this.lastSpace!.worldPosition, this.lastSpace!.worldForward);
+        if (this.lastOrigin instanceof NeedleXRController) {
+            this.ray.copy(this.lastOrigin.ray);
+        }
+        else {
+            this.ray.set(this.lastSpace.worldPosition, this.lastSpace.worldForward);
+        }
         const intersections = this.context.physics.raycastFromRay(this.ray, { targets: wallObjects });
         if (intersections.length > 0) {
             const i = intersections[0];
             const p = i.point;
             const n = i.normal;
-            Gizmos.DrawLine(p, p.clone().add(n!), 0x00ff00, 2);
+            
+            if (debug)
+                Gizmos.DrawLine(p, p.clone().add(n!), 0x00ff00, 2);
 
             const dist = this.lastPlacementPosition.distanceTo(p);
+
             if (dist > 0.15) {
                 this.placeAt({ point: p, normal: n!, object: i.object as GameObject });
                 this.lastPlacementPosition.copy(p);

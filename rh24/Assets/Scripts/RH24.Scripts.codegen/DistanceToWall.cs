@@ -8,8 +8,8 @@ namespace Needle.Typescript.GeneratedComponents
 	public partial class DistanceToWall : UnityEngine.MonoBehaviour
 	{
 		public void OnEnable(){}
+		public void OnDisable(){}
 		public void onPointerEnter(UnityEngine.EventSystems.PointerEventData @args){}
-		public void onPointerMove(UnityEngine.EventSystems.PointerEventData @args){}
 		public void onPointerExit(UnityEngine.EventSystems.PointerEventData @args){}
 		public void onPointerDown(UnityEngine.EventSystems.PointerEventData @args){}
 		public void onPointerUp(UnityEngine.EventSystems.PointerEventData @args){}
