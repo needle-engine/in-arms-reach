@@ -1,4 +1,4 @@
-import { Behaviour, Context, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, PointerEventData, getParam } from "@needle-tools/engine";
+import { Behaviour, Context, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, OrbitControls, PointerEventData, getParam } from "@needle-tools/engine";
 import { CustomDepthSensing } from "./WallReveal";
 import { Matrix4, Quaternion, Ray, Vector3 } from "three";
 import { Renderer } from "@needle-tools/engine";
@@ -30,14 +30,6 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     onDisable() {
         DistanceToWall._instances = DistanceToWall._instances.filter(x => x !== this.gameObject);
-
-        // sync destroy all clones
-        for (const clone of DistanceToWall.allClones) {
-            syncDestroy(clone, this.context.connection, true);
-        }
-
-        DistanceToWall.allClones = [];
-        DistanceToWall.hadFirstPlacement = false;
     }
 
     onPointerEnter(args: PointerEventData) {
@@ -79,6 +71,9 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         // We can completely disable this once we have proper "touch wall" logic in place
         if (!debugReach && args.event.origin instanceof NeedleXRController) return;
         if (!args.point) return;
+
+        const orbit = GameObject.findObjectOfType(OrbitControls)!;
+        orbit.enabled = false;
         
         this.isPlacing = true;
         DistanceToWall.lastPlacementPosition.copy(args.point);
@@ -160,12 +155,15 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         // clone?.lookAt(normal.add(args.point));
     }
 
-    private static allClones: GameObject[] = [];
+    static allClones: GameObject[] = [];
     private isPlacing: boolean = false;
     private static lastPlacementPosition: Vector3 = new Vector3();
 
     onPointerUp(args: PointerEventData) {
         this.isPlacing = false;
+
+        const orbit = GameObject.findObjectOfType(OrbitControls)!;
+        orbit.enabled = true;
     }
 
     private ray: Ray = new Ray();
@@ -177,6 +175,10 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         // extra guard: if no pointer is down anymore, isPlacing should be false
         if (this.isPlacing && this.context.input.getPointerPressedCount() === 0) {
             console.error("oops");
+
+            const orbit = GameObject.findObjectOfType(OrbitControls)!;
+            orbit.enabled = true;
+
             this.isPlacing = false;
         }
         

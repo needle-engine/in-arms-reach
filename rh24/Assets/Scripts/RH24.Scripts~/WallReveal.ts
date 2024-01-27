@@ -1,4 +1,4 @@
-import { Gizmos, NeedleXRController, getParam, serializable } from "@needle-tools/engine";
+import { Context, Gizmos, NeedleXRController, getParam, serializable, syncDestroy } from "@needle-tools/engine";
 import { NEPointerEvent } from "@needle-tools/engine";
 import { XRRig } from "@needle-tools/engine";
 import { Behaviour, GameObject } from "@needle-tools/engine";
@@ -8,6 +8,7 @@ import { ShaderChunk, AgXToneMapping, Vector3, Quaternion, Ray } from "three";
 // Documentation → https://docs.needle.tools/scripting
 
 const debugReach = getParam("reach");
+const debug = getParam("debugrh");
 
 export class CustomDepthSensing extends Behaviour {
 
@@ -27,6 +28,17 @@ export class CustomDepthSensing extends Behaviour {
         this.context.input.addEventListener("pointermove", this.pointerMove.bind(this));
     }
 
+    onDisable(): void {
+            // sync destroy all clones
+            for (const clone of DistanceToWall.allClones) {
+                syncDestroy(clone, this.context.connection, true);
+            }
+    
+            DistanceToWall.allClones = [];
+            DistanceToWall.hadFirstPlacement = false;
+        
+    }
+    
     private ray: Ray = new Ray();
     pointerMove(args: NEPointerEvent) {
         if (debugReach) return;
@@ -63,10 +75,9 @@ export class CustomDepthSensing extends Behaviour {
             const dist = p.distanceTo(this.ray.origin);
             // console.log ("measured distance", dist)
 
-            // 10cm behind hand / 10cm in front of hand to accomodate for wall inaccuracies
+            // 10cm behind hand / 20cm in front of hand to accomodate for wall inaccuracies
             if (dist > 0.3) return; 
 
-            const debug = true;
             if (debug)
                 Gizmos.DrawLine(p, p.clone().add(n2!), 0xffff00, 2);
 
@@ -80,6 +91,10 @@ export class CustomDepthSensing extends Behaviour {
 
         // show our content on first wall touch
         GameObject.setActive(this.scenePlacement, true);
+
+
+        // only place when we're in XR
+        if (!Context.Current.isInXR) return;
 
         // we just want to rotate this.
         // assumes that worldQuaternion is still aligned "upwards"

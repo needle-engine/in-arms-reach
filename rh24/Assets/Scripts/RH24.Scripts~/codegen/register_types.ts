@@ -12,6 +12,7 @@ import { RevealObj } from "../RevealObj.js";
 import { SceneButton } from "../SceneButton.js";
 import { SineMove } from "../SineMove.js";
 import { SwitchScene } from "../SwitchScene.js";
+import { Tagalong } from "../Tagalong.js";
 import { CustomDepthSensing } from "../WallReveal.js";
 
 // Register types
@@ -26,4 +27,5 @@ TypeStore.add("RevealObj", RevealObj);
 TypeStore.add("SceneButton", SceneButton);
 TypeStore.add("SineMove", SineMove);
 TypeStore.add("SwitchScene", SwitchScene);
+TypeStore.add("Tagalong", Tagalong);
 TypeStore.add("CustomDepthSensing", CustomDepthSensing);
