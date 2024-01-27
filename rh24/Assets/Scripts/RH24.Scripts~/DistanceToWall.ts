@@ -113,7 +113,6 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         const scale = (Math.random() * 0.4 + 0.6) * 0.3;
         const scaleVec = new Vector3(scale, scale, scale);
 
-
         const clone = syncInstantiate(obj, {
             position: args.point,
             rotation: worldRot,
