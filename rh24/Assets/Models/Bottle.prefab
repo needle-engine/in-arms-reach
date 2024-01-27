@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TriggerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   OnEnter:
     m_PersistentCalls:
       m_Calls:
