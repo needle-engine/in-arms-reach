@@ -18,17 +18,32 @@ export class CustomDepthSensing extends Behaviour {
         return this._instance;
     } 
 
+    onEnable() {
+        GameObject.setActive(this.scenePlacement, false);
+    }
+
     firstPlacement(worldPoint: Vector3, worldQuaternion: Quaternion) {
 
         if (!this.scenePlacement) return;
 
+        // show our content on first wall touch
+        GameObject.setActive(this.scenePlacement, true);
+
         // we just want to rotate this.
         // assumes that worldQuaternion is still aligned "upwards"
-        this.scenePlacement.quaternion.copy(worldQuaternion);
+        this.scenePlacement.worldQuaternion = worldQuaternion;
         const wp = worldPoint.clone();
         wp.y = 0;
-        this.scenePlacement.position.copy(wp);
+        this.scenePlacement.worldPosition = wp;
         this.scenePlacement.matrixWorldNeedsUpdate = true;
+
+        // this is easier, just ensure it's looking away from us
+        const camWP = this.context.mainCameraComponent!.worldPosition.clone();
+        const ourWP = this.scenePlacement.worldPosition;
+        camWP.y = ourWP.y;
+        this.scenePlacement.lookAt(camWP);
+        // rotate 180°
+        this.scenePlacement.rotateY(Math.PI);
     }
 
     public static rigGuid: string = "";

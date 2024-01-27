@@ -9,6 +9,7 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public UnityEngine.GameObject @revealObject;
 		public UnityEngine.GameObject @scenePlacement;
+		public void OnEnable(){}
 		public void firstPlacement(UnityEngine.Vector3 @worldPoint, UnityEngine.Quaternion @worldQuaternion){}
 		public void awake(){}
 	}

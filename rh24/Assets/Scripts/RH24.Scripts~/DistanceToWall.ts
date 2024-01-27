@@ -16,7 +16,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     // 2: clean occlusion depth with "cleaner" objects that reset depth to far plane
     // 3: draw content of the world
 
-    private hadFirstPlacement: boolean = false;
+    private static hadFirstPlacement: boolean = false;
 
     private static _instances: GameObject[] = [];
 
@@ -33,6 +33,9 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         for (const clone of this.allClones) {
             syncDestroy(clone, this.context.connection, true);
         }
+
+        this.allClones = [];
+        DistanceToWall.hadFirstPlacement = false;
     }
 
     onPointerEnter(args: PointerEventData) {
@@ -122,8 +125,8 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
         if (!clone) return;
 
-        if (!this.hadFirstPlacement) {
-            this.hadFirstPlacement = true;
+        if (!DistanceToWall.hadFirstPlacement) {
+            DistanceToWall.hadFirstPlacement = true;
             CustomDepthSensing.instance.firstPlacement(args.point, worldRot);
         }
 
