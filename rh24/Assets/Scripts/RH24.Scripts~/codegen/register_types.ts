@@ -4,6 +4,8 @@
 import { DistanceToWall } from "../DistanceToWall.js";
 import { HoleBorder } from "../HoleBorder.js";
 import { HoleCutter } from "../HoleCutter.js";
+import { LookFollow } from "../LookFollow.js";
+import { PlaySoundCustom } from "../PlaySoundCustom.js";
 import { RandomSound } from "../RandomSound.js";
 import { SineMove } from "../SineMove.js";
 import { CustomDepthSensing } from "../WallReveal.js";
@@ -12,6 +14,8 @@ import { CustomDepthSensing } from "../WallReveal.js";
 TypeStore.add("DistanceToWall", DistanceToWall);
 TypeStore.add("HoleBorder", HoleBorder);
 TypeStore.add("HoleCutter", HoleCutter);
+TypeStore.add("LookFollow", LookFollow);
+TypeStore.add("PlaySoundCustom", PlaySoundCustom);
 TypeStore.add("RandomSound", RandomSound);
 TypeStore.add("SineMove", SineMove);
 TypeStore.add("CustomDepthSensing", CustomDepthSensing);
