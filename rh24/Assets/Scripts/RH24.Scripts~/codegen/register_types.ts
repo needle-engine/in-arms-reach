@@ -10,6 +10,7 @@ import { PlaySoundCustom } from "../PlaySoundCustom.js";
 import { RandomSound } from "../RandomSound.js";
 import { RevealObj } from "../RevealObj.js";
 import { SineMove } from "../SineMove.js";
+import { SwitchScene } from "../SwitchScene.js";
 import { CustomDepthSensing } from "../WallReveal.js";
 
 // Register types
@@ -22,4 +23,5 @@ TypeStore.add("PlaySoundCustom", PlaySoundCustom);
 TypeStore.add("RandomSound", RandomSound);
 TypeStore.add("RevealObj", RevealObj);
 TypeStore.add("SineMove", SineMove);
+TypeStore.add("SwitchScene", SwitchScene);
 TypeStore.add("CustomDepthSensing", CustomDepthSensing);

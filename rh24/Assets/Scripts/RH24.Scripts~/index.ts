@@ -4,3 +4,5 @@
 
 // Learn more about npm definition packages: 
 // https://docs.needle.tools/npmdef
+
+export * from "./SwitchScene.js";

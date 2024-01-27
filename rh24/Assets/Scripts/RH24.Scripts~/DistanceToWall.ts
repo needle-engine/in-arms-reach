@@ -1,14 +1,16 @@
-import { Behaviour, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, PointerEventData, getParam } from "@needle-tools/engine";
+import { Behaviour, Context, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, PointerEventData, getParam } from "@needle-tools/engine";
 import { CustomDepthSensing } from "./WallReveal";
 import { Matrix4, Quaternion, Ray, Vector3 } from "three";
 import { Renderer } from "@needle-tools/engine";
 import { NeedleXRController } from "@needle-tools/engine";
 import { syncInstantiate } from "@needle-tools/engine";
 import { syncDestroy } from "@needle-tools/engine";
+import { NEPointerEvent } from "@needle-tools/engine";
 
 // Documentation → https://docs.needle.tools/scripting
 
 const debug = getParam("debugrh");
+const debugReach = getParam("reach");
 
 export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     
@@ -16,9 +18,9 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     // 2: clean occlusion depth with "cleaner" objects that reset depth to far plane
     // 3: draw content of the world
 
-    private static hadFirstPlacement: boolean = false;
+    static hadFirstPlacement: boolean = false;
 
-    private static _instances: GameObject[] = [];
+    static _instances: GameObject[] = [];
 
     onEnable() {
         // check if we have a raycaster, add one otherwise
@@ -30,11 +32,11 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         DistanceToWall._instances = DistanceToWall._instances.filter(x => x !== this.gameObject);
 
         // sync destroy all clones
-        for (const clone of this.allClones) {
+        for (const clone of DistanceToWall.allClones) {
             syncDestroy(clone, this.context.connection, true);
         }
 
-        this.allClones = [];
+        DistanceToWall.allClones = [];
         DistanceToWall.hadFirstPlacement = false;
     }
 
@@ -61,13 +63,25 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         }
     }
 
+    static cleanUpClones() {
+        for (const clone of DistanceToWall.allClones) {
+            syncDestroy(clone, Context.Current.connection, true);
+        }
+
+        DistanceToWall.allClones = [];
+        DistanceToWall.hadFirstPlacement = false;
+    }
+
     private lastOrigin: any;
     private lastSpace: GameObject;
     onPointerDown(args: PointerEventData) {
+
+        // We can completely disable this once we have proper "touch wall" logic in place
+        if (!debugReach && args.event.origin instanceof NeedleXRController) return;
         if (!args.point) return;
         
         this.isPlacing = true;
-        this.lastPlacementPosition.copy(args.point);
+        DistanceToWall.lastPlacementPosition.copy(args.point);
         this.lastOrigin = args.event.origin;
         this.lastSpace = args.event.space as GameObject;
 
@@ -76,9 +90,8 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
             Gizmos.DrawLine(args.point, args.event.space.worldPosition, undefined, 5);
         }
 
-        
         if (args.normal) {
-            this.placeAt({ point: args.point, normal: args.normal, object: args.object as GameObject });
+            DistanceToWall.placeAt({ point: args.point, normal: args.normal, object: args.object as GameObject });
         }
 
         // spawn "cleanup" object on wall
@@ -86,7 +99,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         // the cleanup object 
     }
 
-    private placeAt(args: { point: Vector3, normal: Vector3, object: GameObject }) {
+    static placeAt(args: { point: Vector3, normal: Vector3, object: GameObject }) {
 
         const obj = CustomDepthSensing.instance.revealObject;
         if (!obj) return;
@@ -147,9 +160,9 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         // clone?.lookAt(normal.add(args.point));
     }
 
-    private allClones: GameObject[] = [];
+    private static allClones: GameObject[] = [];
     private isPlacing: boolean = false;
-    private lastPlacementPosition: Vector3 = new Vector3();
+    private static lastPlacementPosition: Vector3 = new Vector3();
 
     onPointerUp(args: PointerEventData) {
         this.isPlacing = false;
@@ -157,6 +170,9 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     private ray: Ray = new Ray();
     update() {
+
+        if (!debugReach && this.lastOrigin instanceof NeedleXRController) return;
+
 
         // extra guard: if no pointer is down anymore, isPlacing should be false
         if (this.isPlacing && this.context.input.getPointerPressedCount() === 0) {
@@ -184,12 +200,28 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
             if (debug)
                 Gizmos.DrawLine(p, p.clone().add(n!), 0x00ff00, 2);
 
-            const dist = this.lastPlacementPosition.distanceTo(p);
+            DistanceToWall.checkNewPlacement({ point: p, normal: n!, object: i.object as GameObject });
+
+            const dist = DistanceToWall.lastPlacementPosition.distanceTo(p);
 
             if (dist > 0.15) {
-                this.placeAt({ point: p, normal: n!, object: i.object as GameObject });
-                this.lastPlacementPosition.copy(p);
+                DistanceToWall.placeAt({ point: p, normal: n!, object: i.object as GameObject });
+                DistanceToWall.lastPlacementPosition.copy(p);
             }
+        }
+    }
+
+    static checkNewPlacement(args: { point: Vector3, normal: Vector3, object: GameObject }) {
+        
+        const p = args.point;
+        const n = args.normal;
+        const i = args.object;
+
+        const dist = DistanceToWall.lastPlacementPosition.distanceTo(p);
+
+        if (dist > 0.15) {
+            DistanceToWall.placeAt({ point: p, normal: n!, object: i as GameObject });
+            DistanceToWall.lastPlacementPosition.copy(p);
         }
     }
 }

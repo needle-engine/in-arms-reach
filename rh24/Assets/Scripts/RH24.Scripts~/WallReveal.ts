@@ -1,9 +1,13 @@
-import { serializable } from "@needle-tools/engine";
+import { Gizmos, NeedleXRController, getParam, serializable } from "@needle-tools/engine";
+import { NEPointerEvent } from "@needle-tools/engine";
 import { XRRig } from "@needle-tools/engine";
 import { Behaviour, GameObject } from "@needle-tools/engine";
-import { ShaderChunk, AgXToneMapping, Vector3, Quaternion } from "three";
+import { DistanceToWall } from "./DistanceToWall.js";
+import { ShaderChunk, AgXToneMapping, Vector3, Quaternion, Ray } from "three";
 
 // Documentation → https://docs.needle.tools/scripting
+
+const debugReach = getParam("reach");
 
 export class CustomDepthSensing extends Behaviour {
 
@@ -20,6 +24,54 @@ export class CustomDepthSensing extends Behaviour {
 
     onEnable() {
         GameObject.setActive(this.scenePlacement, false);
+        this.context.input.addEventListener("pointermove", this.pointerMove.bind(this));
+    }
+
+    private ray: Ray = new Ray();
+    pointerMove(args: NEPointerEvent) {
+        if (debugReach) return;
+        // only makes sense for XR controllers / spatial controllers
+        if (!(args.origin instanceof NeedleXRController)) return;
+
+        if (!CustomDepthSensing._instance) return;
+
+        // console.log(args.origin);
+
+        // raycast into the scene
+        if (args.origin instanceof NeedleXRController) {
+            this.ray.copy(args.origin.ray);
+            // move ray a bit back
+            this.ray.origin.add(this.ray.direction.clone().multiplyScalar(-0.1));
+        }
+        else {
+            this.ray.set(args.space.worldPosition, args.space.worldForward);
+        }
+
+        const wallObjects = DistanceToWall._instances;
+        const intersections = this.context.physics.raycastFromRay(this.ray, { targets: wallObjects });
+        
+        if (intersections.length > 0) {
+            const i = intersections[0];
+            const p = i.point;
+            const n2 = i.normal?.clone();
+            const o = i.object as GameObject;
+            
+            if (n2)
+                n2.applyQuaternion(o.worldQuaternion);
+
+            // check how far from the wall we are
+            const dist = p.distanceTo(this.ray.origin);
+            // console.log ("measured distance", dist)
+
+            // 10cm behind hand / 10cm in front of hand to accomodate for wall inaccuracies
+            if (dist > 0.3) return; 
+
+            const debug = true;
+            if (debug)
+                Gizmos.DrawLine(p, p.clone().add(n2!), 0xffff00, 2);
+
+            DistanceToWall.checkNewPlacement({ point: p, normal: i.normal!, object: o });
+        }
     }
 
     firstPlacement(worldPoint: Vector3, worldQuaternion: Quaternion) {

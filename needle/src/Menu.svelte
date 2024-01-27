@@ -1,15 +1,23 @@
 <script lang="ts">
 
-import { Context } from "@needle-tools/engine";
+import { Context, GameObject } from "@needle-tools/engine";
 import Button from "./Button.svelte";
 import Group from "./Group.svelte";
 import { CameraSpot } from "./scripts/CameraSpot";
+
+import { SwitchScene } from "rh24.scripts";
 
 export let cameraSpots: Array<CameraSpot> = [];
 export let selectedSpot: CameraSpot | null = null;
 export let context: Context;
 
 let foldoutIsOpen = false;
+
+function setScene(index: number) {
+    const switcher = GameObject.findObjectOfType(SwitchScene)!;
+    switcher.setScene(index);
+    console.log("yooo", index)
+}
 
 </script>
 
@@ -22,6 +30,9 @@ let foldoutIsOpen = false;
             // recreate context
             context.recreate();
         }}>Reset</Button>
+        <Button on:click={() => setScene(0)}>Water</Button>
+        <Button on:click={() => setScene(1)}>Ice</Button>
+        <Button on:click={() => setScene(2)}>Fire</Button>
         {/if}
         {#each cameraSpots as spot}
             <Button on:click={() => selectedSpot = spot}>{spot.name}</Button>
