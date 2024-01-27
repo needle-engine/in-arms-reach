@@ -9,6 +9,7 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public float @rotate = 1f;
 		public float @move = 1f;
+		public UnityEngine.Vector3 @moveMultiplier = new UnityEngine.Vector3(1f, 1f, 1f);
 		public void OnEnable(){}
 		public void update(){}
 	}

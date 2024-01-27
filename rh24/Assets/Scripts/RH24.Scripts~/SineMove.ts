@@ -11,6 +11,9 @@ export class SineMove extends Behaviour {
     @serializable()
     move: number = 1;
 
+    @serializable()
+    moveMultiplier: Vector3 = new Vector3(1,1,1);
+
     private e: Euler = new Euler();
     private speeds: Vector3 = new Vector3(0.5, 0.7, 0.3);
     private moveSpeeds = new Vector3(0.5, 0.7, 0.3);
@@ -47,9 +50,9 @@ export class SineMove extends Behaviour {
      
         if (this.move !== 0) {
             this.gameObject.position.set(
-                Math.sin(t * this.moveSpeeds.x + this.o) * 0.1 * this.move,
-                Math.sin(t * this.moveSpeeds.y + this.o) * 0.1 * this.move,
-                Math.sin(t * this.moveSpeeds.z + this.o) * 0.1 * this.move,
+                Math.sin(t * this.moveSpeeds.x + this.o) * 0.1 * this.move * this.moveMultiplier.x,
+                Math.sin(t * this.moveSpeeds.y + this.o) * 0.1 * this.move * this.moveMultiplier.y,
+                Math.sin(t * this.moveSpeeds.z + this.o) * 0.1 * this.move * this.moveMultiplier.z,
             );
         }
     }
