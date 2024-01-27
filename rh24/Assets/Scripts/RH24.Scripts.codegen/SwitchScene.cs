@@ -15,3 +15,40 @@ namespace Needle.Typescript.GeneratedComponents
 }
 
 // NEEDLE_CODEGEN_END
+
+#if UNITY_EDITOR
+
+namespace Needle.Typescript.GeneratedComponents
+{
+	using UnityEditor;
+	using UnityEngine;
+	
+	[CustomEditor(typeof(SwitchScene))]
+	public class SwitchSceneEditor: Editor
+	{
+		public override void OnInspectorGUI()
+		{
+			var t = target as SwitchScene;
+			DrawDefaultInspector();
+			EditorGUILayout.Space();
+			
+			if (GUILayout.Button("Water"))
+				SetScene(0);
+
+			if (GUILayout.Button("Ice"))
+				SetScene(1);
+			
+			if (GUILayout.Button("Fire"))
+				SetScene(2);
+		}
+
+		void SetScene(int index)
+		{
+			var t = target as SwitchScene;
+			for (int i = 0; i < t.scenes.Length; i++)
+				t.scenes[i].SetActive(i == index);
+		}
+	}
+}
+
+#endif
