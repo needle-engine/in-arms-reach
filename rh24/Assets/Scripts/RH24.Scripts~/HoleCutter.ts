@@ -6,7 +6,11 @@ import { ShaderMaterial } from "three/src/materials/ShaderMaterial";
 
 export class HoleCutter extends Behaviour {
     
+    @serializable()
+    doubleSided: boolean = false;
+
     private static DepthCutMat: ShaderMaterial;
+    private static DepthCutDoubleMat: ShaderMaterial;
 
     onEnable() {
 
@@ -27,7 +31,12 @@ export class HoleCutter extends Behaviour {
             HoleCutter.DepthCutMat.extensions.fragDepth = true;
         }
 
-        this.gameObject.material = HoleCutter.DepthCutMat;
+        if (!HoleCutter.DepthCutDoubleMat) {
+            HoleCutter.DepthCutDoubleMat = HoleCutter.DepthCutMat.clone();
+            HoleCutter.DepthCutDoubleMat.side = 2;
+        }
+
+        this.gameObject.material = this.doubleSided ? HoleCutter.DepthCutDoubleMat : HoleCutter.DepthCutMat;
         this.gameObject.renderOrder = -90;
     }
 }

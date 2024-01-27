@@ -5,10 +5,10 @@
 
 namespace Needle.Typescript.GeneratedComponents
 {
-	public partial class HoleCutter : UnityEngine.MonoBehaviour
+	public partial class Tagalong : UnityEngine.MonoBehaviour
 	{
-		public bool @doubleSided = false;
-		public void OnEnable(){}
+		public string @myStringField = "Hello World";
+		public void start(){}
 	}
 }
 
