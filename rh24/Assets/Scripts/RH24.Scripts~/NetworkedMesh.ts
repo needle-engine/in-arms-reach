@@ -1,10 +1,9 @@
 import { Behaviour, GameObject, WebXRPlaneTracking, serializable, syncField } from "@needle-tools/engine";
-import { PlayerSync } from "@needle-tools/engine";
 import { isQuest } from "@needle-tools/engine";
 import { PlayerState } from "@needle-tools/engine";
 import { ShadowCatcher } from "@needle-tools/engine";
 import { WebXRPlaneTrackingEvent } from "@needle-tools/engine";
-import { Mesh, BufferGeometry, Material, MaterialLoader, BufferGeometryLoader, Matrix4, Vector3 } from "three";
+import { Mesh, Material, Matrix4, Vector3 } from "three";
 
 class MeshData {
     pose: Matrix4;
@@ -12,20 +11,21 @@ class MeshData {
     version: number;
 }
 
-const version = 3;
-
 export class NetworkedMesh extends Behaviour { 
 
     @serializable(Material)
     material: Material;
 
-    @syncField("onNewGeometry")
+    @syncField(NetworkedMesh.prototype.onNewGeometry)
     private geometry: Array<MeshData> = [];
 
     start(): void {
 
         console.log("enabling NetworkedMesh", PlayerState.isLocalPlayer(this.gameObject));
         if (!PlayerState.isLocalPlayer(this.gameObject)) return;
+
+        // we only want to share Quest planes for now
+        if (!isQuest()) return;
 
         const planeTracking = GameObject.findObjectOfType(WebXRPlaneTracking);
         planeTracking?.addEventListener("plane-tracking", this.onPlaneTracking);

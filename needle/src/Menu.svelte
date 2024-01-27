@@ -19,6 +19,8 @@ let foldoutIsOpen = false;
         {#if context}
         <Button on:click={() => {
             context.connection.sendDeleteRemoteStateAll();
+            // recreate context
+            context.recreate();
         }}>Reset</Button>
         {/if}
         {#each cameraSpots as spot}
