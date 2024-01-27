@@ -2,7 +2,17 @@ fileFormatVersion: 2
 guid: 94d78e92d98344ca5b91fe7d797cfcd5
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stylized Decorative Wood
+    second: {fileID: 2100000, guid: 87b423a20cb68417da5a6e17bf2000d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stylized Decorative Wood.002
+    second: {fileID: 2100000, guid: 87b423a20cb68417da5a6e17bf2000d4, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
