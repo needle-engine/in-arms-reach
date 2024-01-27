@@ -18,6 +18,9 @@ export class CustomDepthSensing extends Behaviour {
     @serializable(GameObject)
     scenePlacement: GameObject;
 
+    @serializable(GameObject)
+    scenesRoot: GameObject;
+
     private static _instance: CustomDepthSensing;
     public static get instance() {
         return this._instance;
@@ -91,7 +94,7 @@ export class CustomDepthSensing extends Behaviour {
 
         // show our content on first wall touch
         GameObject.setActive(this.scenePlacement, true);
-
+        GameObject.setActive(this.scenesRoot, true);
 
         // only place when we're in XR
         if (!Context.Current.isInXR) return;
