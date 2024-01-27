@@ -12,6 +12,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public void onPointerMove(UnityEngine.EventSystems.PointerEventData @args){}
 		public void onPointerExit(UnityEngine.EventSystems.PointerEventData @args){}
 		public void onPointerDown(UnityEngine.EventSystems.PointerEventData @args){}
+		public void onPointerUp(UnityEngine.EventSystems.PointerEventData @args){}
 		public void update(){}
 	}
 }

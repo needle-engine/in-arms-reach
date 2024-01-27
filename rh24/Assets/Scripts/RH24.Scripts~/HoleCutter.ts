@@ -10,14 +10,13 @@ export class HoleCutter extends Behaviour {
 
     onEnable() {
 
-        // TODO do this for all children?
-
         if (!HoleCutter.DepthCutMat) {
             HoleCutter.DepthCutMat = new ShaderMaterial({
                 depthWrite: true,
                 depthTest: true,
                 depthFunc: AlwaysDepth,
                 colorWrite: true,
+                // TODO can we sample an animated cutout texture of sorts here? in worldspace?
                 fragmentShader: `
                     void main() {
                         gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);

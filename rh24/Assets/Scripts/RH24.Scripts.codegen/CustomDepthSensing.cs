@@ -8,6 +8,8 @@ namespace Needle.Typescript.GeneratedComponents
 	public partial class CustomDepthSensing : UnityEngine.MonoBehaviour
 	{
 		public UnityEngine.GameObject @revealObject;
+		public UnityEngine.GameObject @scenePlacement;
+		public void firstPlacement(UnityEngine.Vector3 @worldPoint, UnityEngine.Quaternion @worldQuaternion){}
 		public void awake(){}
 	}
 }

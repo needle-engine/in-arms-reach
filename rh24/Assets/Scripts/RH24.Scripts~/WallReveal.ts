@@ -1,16 +1,31 @@
+import { serializable } from "@needle-tools/engine";
 import { Behaviour, GameObject } from "@needle-tools/engine";
-import { ShaderChunk, AgXToneMapping } from "three";
+import { ShaderChunk, AgXToneMapping, Vector3, Quaternion } from "three";
 
 // Documentation → https://docs.needle.tools/scripting
 
 export class CustomDepthSensing extends Behaviour {
 
+    @serializable()
     revealObject: GameObject;
+
+    @serializable()
+    scenePlacement: GameObject;
 
     private static _instance: CustomDepthSensing;
     public static get instance() {
         return this._instance;
     } 
+
+    firstPlacement(worldPoint: Vector3, worldQuaternion: Quaternion) {
+        // we just want to rotate this.
+        // assumes that worldQuaternion is still aligned "upwards"
+        this.scenePlacement.quaternion.copy(worldQuaternion);
+        const wp = worldPoint.clone();
+        wp.y = 0;
+        this.scenePlacement.position.copy(wp);
+        this.scenePlacement.matrixWorldNeedsUpdate = true;
+    }
 
     awake() {
         CustomDepthSensing._instance = this;
