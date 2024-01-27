@@ -1,9 +1,10 @@
-import { Animator, AssetReference, Behaviour, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, PointerEventData, WebXRPlaneTracking, getParam, instantiate, serializable } from "@needle-tools/engine";
+import { Behaviour, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, PointerEventData, getParam } from "@needle-tools/engine";
 import { CustomDepthSensing } from "./WallReveal";
 import { Matrix4, Quaternion, Ray, Vector3 } from "three";
 import { Renderer } from "@needle-tools/engine";
-import { InstancingUtil } from "@needle-tools/engine";
 import { NeedleXRController } from "@needle-tools/engine";
+import { syncInstantiate } from "@needle-tools/engine";
+import { syncDestroy } from "@needle-tools/engine";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -27,6 +28,11 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     onDisable() {
         DistanceToWall._instances = DistanceToWall._instances.filter(x => x !== this.gameObject);
+
+        // sync destroy all clones
+        for (const clone of this.allClones) {
+            syncDestroy(clone, this.context.connection, true);
+        }
     }
 
     onPointerEnter(args: PointerEventData) {
@@ -95,11 +101,25 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         mat.lookAt(args.point, normalOffsetPoint, new Vector3(0,1,0));
         const worldRot = new Quaternion();
         worldRot.setFromRotationMatrix(mat);
-        
-        const clone = instantiate(obj, {
+
+        const randomAxisRotation = new Quaternion();
+        randomAxisRotation.setFromAxisAngle(new Vector3(0,0,1), Math.random() * Math.PI * 2);
+
+        worldRot.multiply(randomAxisRotation);
+
+        // random rotation around forward axis
+        // clone.rotateOnAxis(new Vector3(0, 0, 1), Math.random() * Math.PI * 2);
+        // random scale between 0.6 and 1
+        const scale = (Math.random() * 0.4 + 0.6) * 0.3;
+        const scaleVec = new Vector3(scale, scale, scale);
+
+
+        const clone = syncInstantiate(obj, {
             position: args.point,
             rotation: worldRot,
-        });
+            scale: scaleVec,
+            parent: CustomDepthSensing.rigGuid,
+        }) as GameObject;
 
         if (!clone) return;
 
@@ -107,12 +127,6 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
             this.hadFirstPlacement = true;
             CustomDepthSensing.instance.firstPlacement(args.point, worldRot);
         }
-
-        // random rotation around forward axis
-        clone.rotateOnAxis(new Vector3(0, 0, 1), Math.random() * Math.PI * 2);
-        // random scale between 0.6 and 1
-        const scale = (Math.random() * 0.4 + 0.6) * 0.3;
-        clone.scale.set(scale, scale, scale);
 
         // enable instancing on the clone
         const renderers = clone.getComponentsInChildren(Renderer)!;
@@ -124,19 +138,14 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
         if (!clone) return;
 
-        GameObject.setActive(clone, true);
-
         // parent to wall for poor mans anchoring
-        args.object.attach(clone);
+        // args.object.attach(clone);
 
-        const animator = clone.getComponent(Animator);
-        if (animator) {
-            animator!.reset();
-            animator!.initializeRuntimeAnimatorController(true);
-        }
+        this.allClones.push(clone);
         // clone?.lookAt(normal.add(args.point));
     }
 
+    private allClones: GameObject[] = [];
     private isPlacing: boolean = false;
     private lastPlacementPosition: Vector3 = new Vector3();
 

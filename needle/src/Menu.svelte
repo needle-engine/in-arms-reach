@@ -1,11 +1,13 @@
 <script lang="ts">
 
+import { Context } from "@needle-tools/engine";
 import Button from "./Button.svelte";
 import Group from "./Group.svelte";
 import { CameraSpot } from "./scripts/CameraSpot";
 
 export let cameraSpots: Array<CameraSpot> = [];
 export let selectedSpot: CameraSpot | null = null;
+export let context: Context;
 
 let foldoutIsOpen = false;
 
@@ -14,12 +16,18 @@ let foldoutIsOpen = false;
 <div class="container">
     <Group>
         <span slot="label" class="uppercase">Menu</span>
+        {#if context}
+        <Button on:click={() => {
+            context.connection.sendDeleteRemoteStateAll();
+        }}>Reset</Button>
+        {/if}
         {#each cameraSpots as spot}
             <Button on:click={() => selectedSpot = spot}>{spot.name}</Button>
         {/each}
     </Group>
 
     {#if selectedSpot || foldoutIsOpen}
+    <button>Reset</button>
     <Group>
         {#if selectedSpot}
         <h4 class="uppercase">Current selection</h4>

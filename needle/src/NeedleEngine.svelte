@@ -8,7 +8,7 @@ export let cameraSpots: Array<CameraSpot> = [];
 export let selectedSpot: CameraSpot | null = null;
 
 // internal state - we manage that here
-let context: Context;
+export let context: Context;
 let stateManager: StateManager | null = null;
 
 // wait for the Needle Engine context to be ready (then we have GameObjects, components, ...)

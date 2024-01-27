@@ -1,4 +1,5 @@
 import { serializable } from "@needle-tools/engine";
+import { XRRig } from "@needle-tools/engine";
 import { Behaviour, GameObject } from "@needle-tools/engine";
 import { ShaderChunk, AgXToneMapping, Vector3, Quaternion } from "three";
 
@@ -30,7 +31,14 @@ export class CustomDepthSensing extends Behaviour {
         this.scenePlacement.matrixWorldNeedsUpdate = true;
     }
 
+    public static rigGuid: string = "";
+
     awake() {
+
+        // find Rig
+        const rig = GameObject.findObjectOfType(XRRig)?.gameObject;
+        CustomDepthSensing.rigGuid = rig?.guid ?? "";
+
         CustomDepthSensing._instance = this;
 
         // adjust tonemapping if wanted
