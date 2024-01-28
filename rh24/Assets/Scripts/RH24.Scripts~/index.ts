@@ -6,3 +6,4 @@
 // https://docs.needle.tools/npmdef
 
 export * from "./SwitchScene.js";
+export * from "./CamRotator.js";

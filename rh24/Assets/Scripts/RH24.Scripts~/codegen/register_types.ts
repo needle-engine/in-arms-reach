@@ -1,6 +1,7 @@
 ﻿import { TypeStore } from "@needle-tools/engine"
 
 // Import types
+import { CamRotator } from "../CamRotator.js";
 import { DistanceToWall } from "../DistanceToWall.js";
 import { HoleBorder } from "../HoleBorder.js";
 import { HoleCutter } from "../HoleCutter.js";
@@ -16,6 +17,7 @@ import { Tagalong } from "../Tagalong.js";
 import { CustomDepthSensing } from "../WallReveal.js";
 
 // Register types
+TypeStore.add("CamRotator", CamRotator);
 TypeStore.add("DistanceToWall", DistanceToWall);
 TypeStore.add("HoleBorder", HoleBorder);
 TypeStore.add("HoleCutter", HoleCutter);

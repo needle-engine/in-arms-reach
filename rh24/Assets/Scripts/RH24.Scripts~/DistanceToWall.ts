@@ -72,8 +72,8 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         if (!debugReach && args.event.origin instanceof NeedleXRController) return;
         if (!args.point) return;
 
-        const orbit = GameObject.findObjectOfType(OrbitControls)!;
-        orbit.enabled = false;
+        const orbit = GameObject.findObjectOfType(OrbitControls);
+        if (orbit) orbit.enabled = false;
         
         this.isPlacing = true;
         DistanceToWall.lastPlacementPosition.copy(args.point);
@@ -162,8 +162,8 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     onPointerUp(args: PointerEventData) {
         this.isPlacing = false;
 
-        const orbit = GameObject.findObjectOfType(OrbitControls)!;
-        orbit.enabled = true;
+        const orbit = GameObject.findObjectOfType(OrbitControls);
+        if (orbit) orbit.enabled = true;
     }
 
     private ray: Ray = new Ray();
@@ -176,8 +176,8 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         if (this.isPlacing && this.context.input.getPointerPressedCount() === 0) {
             console.error("oops");
 
-            const orbit = GameObject.findObjectOfType(OrbitControls)!;
-            orbit.enabled = true;
+            const orbit = GameObject.findObjectOfType(OrbitControls);
+            if (orbit) orbit.enabled = true;
 
             this.isPlacing = false;
         }
