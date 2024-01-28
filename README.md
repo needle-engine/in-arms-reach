@@ -2,9 +2,10 @@
 
 "In Arm's Reach" is a WebXR app created over the course of 2.5 days for MIT RealityHack 2024. It's using [Needle Engine](https://needle.tools) and Unity to bring the experience to anyone on the web.  
 
-![In Arm's Reach Hero Image](https://hybridherbst.github.io/in-arms-reach/include/in-arms-reach.jpg)
+**Video:** ["In Arm's Reach" on YouTube](https://www.youtube.com/watch?v=_xDjOlSIrU0)  
+**WebXR App:** [hybridherbst.github.io/in-arms-reach](https://hybridherbst.github.io/in-arms-reach/)  
 
-Live page: [hybridherbst.github.io/in-arms-reach](https://hybridherbst.github.io/in-arms-reach/)  
+[![In Arm's Reach hero Image](https://hybridherbst.github.io/in-arms-reach/include/in-arms-reach.jpg)](https://www.youtube.com/watch?v=_xDjOlSIrU0)
 
 ## Setup
 
@@ -19,7 +20,17 @@ The main scene is called `LivingHarmony.unity`. It contains an `ExportInfo` comp
 
 You may need to accept the Needle Engine EULA in the Unity Editor before you can build the project (a window will pop up) – it's available for free for non-commercial use.  
 
-When you press <kbd>Play</kbd>, a browser window will open with your project already being live. You can test the app in any browser – open it on a Quest 2/3 device in the same local network to view the app in AR or VR.  
+When you press <kbd>Play</kbd>, a browser window will open with your project already being live on a local server, running on your machine.  
+You can test the app in any browser – open the local URL on a Quest 2/3 device in the same local network as your computer and then click on <kbd>Enter AR</kbd> or <kbd>Enter VR</kbd>.  
+
+The accompanying web project uses TypeScript and Svelte and can be opened via `needle/workspace.code-workspace`, or by clicking on <kbd>Open Workspace</kbd> from within Unity with the ExportInfo object selected.
+
+To build and bundle the project,  
+- go to File > Build Settings in Unity  
+- select Needle Engine  
+- click on Build  
+
+The resulting folder can be uploaded to a web server and contains a self-contained static web app.  
 
 ### Water, Ice and Fire Scene Setup
 
@@ -27,7 +38,10 @@ Each scene has an animated Timeline that starts playing once the first spot on a
 
 Scenes can provide additional interactive control and challenges. One of the turtles in the Water scene slowly approaches the user, and the user can collect various pieces of trash floating in the ocean.   
 
-### Rendering Overview
+## Building 
+
+
+## Rendering Overview
 
 A main feature of In Arm's Reach is the ability to look behind your walls and bring a virtual environment into your room. This is enabled by WebXR features that are backed by Meta's Presence Platform. 
 
@@ -46,7 +60,7 @@ We're rendering in a very specific order:
 
 In a future update, we'd like to incorporate Quest Depth Sensing into rendering this pipeline, which provides real-time occlusion, for even greater immersion.
 
-### Multi-User Support
+## Multi-User Support
 
 To start a session with other people:
 
