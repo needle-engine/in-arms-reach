@@ -1,6 +1,6 @@
 <script lang="ts">
 
-let expanded = true;
+export let expanded = true;
 
 </script>
 

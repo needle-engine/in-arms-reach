@@ -65,6 +65,10 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         DistanceToWall.hadFirstPlacement = false;
 
         Context.Current.domElement.dispatchEvent(new CustomEvent("reset-placement"));
+
+        if (Context.Current.xr?.isVR) {
+            CustomDepthSensing.instance.firstPlacement(new Vector3(), new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.PI));
+        }
     }
 
     private lastOrigin: any;

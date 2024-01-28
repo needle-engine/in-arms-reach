@@ -19,7 +19,7 @@ function setScene(index: number) {
 </script>
 
 <div class="container">
-    <Group>
+    <Group expanded={false}>
         <span slot="label" class="uppercase">Menu</span>
         {#if context}
         <Button on:click={() => {

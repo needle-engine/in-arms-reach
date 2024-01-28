@@ -4,6 +4,7 @@ import { XRRig } from "@needle-tools/engine";
 import { Behaviour, GameObject } from "@needle-tools/engine";
 import { DistanceToWall } from "./DistanceToWall.js";
 import { ShaderChunk, AgXToneMapping, Vector3, Quaternion, Ray, MeshStandardMaterial, Mesh, BoxGeometry, Scene } from "three";
+import { NeedleXREventArgs } from "@needle-tools/engine";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -29,6 +30,12 @@ export class CustomDepthSensing extends Behaviour {
     onEnable() {
         GameObject.setActive(this.scenePlacement, false);
         this.context.input.addEventListener("pointermove", this.pointerMove.bind(this));
+    }
+
+    onEnterXR(args: NeedleXREventArgs) {
+        if (args.xr.isVR) {
+            this.firstPlacement(new Vector3(), new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.PI));
+        }
     }
 
     onDisable(): void {

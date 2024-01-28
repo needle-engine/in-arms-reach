@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: plasticbottle
       objectReference: {fileID: 0}
+    - target: {fileID: 8771091787928289351, guid: b13128e688f9c1046b96889371fb7b35, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -17490,7 +17490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf409ffccda34166b926284faafa75c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createVRButton: 0
+  createVRButton: 1
   createARButton: 1
   createSendToQuestButton: 1
   createQRCode: 1
@@ -17500,9 +17500,9 @@ MonoBehaviour:
   useXRAnchor: 0
   useQuicklookExport: 1
   useDepthSensing: 0
-  useDefaultControls: 1
-  showControllerModels: 0
-  showHandModels: 0
+  useDefaultControls: 0
+  showControllerModels: 1
+  showHandModels: 1
   defaultAvatar: {fileID: 0}
 --- !u!4 &1200683378
 Transform:
@@ -25583,6 +25583,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2700555443084184517, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3012221712616567911, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -25614,6 +25618,14 @@ PrefabInstance:
     - target: {fileID: 4973928317398555181, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416499737855997095, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416499737855997095, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5576920370598931408, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
@@ -25747,11 +25759,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8673637577615087027, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9208365767036561836, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8138084774978504030, guid: 3674b059161f690499678610f3143563, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
