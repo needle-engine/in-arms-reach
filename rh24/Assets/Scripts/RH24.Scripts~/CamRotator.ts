@@ -30,7 +30,7 @@ export class CamRotator extends Behaviour {
 
 
     update() {
-        const mouseSensitivity = 0.5;
+        const mouseSensitivity = 0.25;
 
         // get mouse coordinates
         if (this.useMouseData) {

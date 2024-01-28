@@ -25,8 +25,6 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _BUILTIN_ALPHATEST_ON
-  - _BUILTIN_AlphaClip
   - _BUILTIN_SURFACE_TYPE_TRANSPARENT
   - _TEXTURE_TRANSFORM_ON
   - _VERTEX_COLORS_ON
@@ -84,7 +82,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BUILTIN_AlphaClip: 1
+    - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
     - _BUILTIN_DstBlend: 10
@@ -119,5 +117,5 @@ Material:
     m_Colors:
     - _Color: {r: 0.6792453, g: 0.43354815, b: 0.20825914, a: 0.5058824}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - baseColorFactor: {r: 0.504717, g: 0.9311559, b: 1, a: 0.7176471}
+    - baseColorFactor: {r: 0.504717, g: 0.9311559, b: 1, a: 0.32156864}
   m_BuildTextureStacks: []

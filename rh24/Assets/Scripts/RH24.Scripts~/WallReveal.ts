@@ -32,14 +32,15 @@ export class CustomDepthSensing extends Behaviour {
     }
 
     onDisable(): void {
-            // sync destroy all clones
-            for (const clone of DistanceToWall.allClones) {
-                syncDestroy(clone, this.context.connection, true);
-            }
+        // sync destroy all clones
+        for (const clone of DistanceToWall.allClones) {
+            syncDestroy(clone, this.context.connection, true);
+        }
+
+        DistanceToWall.allClones = [];
+        DistanceToWall.hadFirstPlacement = false;
     
-            DistanceToWall.allClones = [];
-            DistanceToWall.hadFirstPlacement = false;
-        
+        this.context.domElement.dispatchEvent(new CustomEvent("reset-placement"));
     }
     
     private ray: Ray = new Ray();
@@ -94,6 +95,8 @@ export class CustomDepthSensing extends Behaviour {
         // show our content on first wall touch
         GameObject.setActive(this.scenePlacement, true);
         GameObject.setActive(this.scenesRoot, true);
+
+        this.context.domElement.dispatchEvent(new CustomEvent("first-placement"));
 
         // only place when we're in XR
         if (!Context.Current.isInXR) return;
