@@ -11,6 +11,7 @@ import { NEPointerEvent } from "@needle-tools/engine";
 
 const debug = getParam("debugrh");
 const debugReach = getParam("reach");
+const noSpawn = getParam("nospawn");
 
 export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     
@@ -124,34 +125,23 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         const scale = (Math.random() * 0.4 + 0.6) * 0.3;
         const scaleVec = new Vector3(scale, scale, scale);
 
-        const clone = syncInstantiate(obj, {
-            position: args.point,
-            rotation: worldRot,
-            scale: scaleVec,
-            parent: CustomDepthSensing.rigGuid,
-        }) as GameObject;
+        if (!noSpawn) {
+            const clone = syncInstantiate(obj, {
+                position: args.point,
+                rotation: worldRot,
+                scale: scaleVec,
+                parent: CustomDepthSensing.rigGuid,
+            }) as GameObject;
 
-        if (!clone) return;
+            if (!clone) return;
+
+            this.allClones.push(clone);
+        }
 
         if (!DistanceToWall.hadFirstPlacement) {
             DistanceToWall.hadFirstPlacement = true;
             CustomDepthSensing.instance.firstPlacement(args.point, worldRot);
         }
-
-        // enable instancing on the clone
-        const renderers = clone.getComponentsInChildren(Renderer)!;
-        for (const renderer of renderers) {
-            //if (!renderer.enableInstancing) renderer.enableInstancing = [];
-            //renderer.enableInstancing[0] = true;
-            //InstancingUtil.markDirty(renderer.gameObject);
-        }
-
-        if (!clone) return;
-
-        // parent to wall for poor mans anchoring
-        // args.object.attach(clone);
-
-        this.allClones.push(clone);
         // clone?.lookAt(normal.add(args.point));
     }
 

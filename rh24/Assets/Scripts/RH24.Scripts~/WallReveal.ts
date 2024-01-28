@@ -47,7 +47,6 @@ export class CustomDepthSensing extends Behaviour {
         if (debugReach) return;
         // only makes sense for XR controllers / spatial controllers
         if (!(args.origin instanceof NeedleXRController)) return;
-
         if (!CustomDepthSensing._instance) return;
 
         // console.log(args.origin);
