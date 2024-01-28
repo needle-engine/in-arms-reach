@@ -21,22 +21,30 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: donate
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 59541e6caf586ca4f96ccf48a4813a51, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ALPHAPREMULTIPLY_ON
-  m_InvalidKeywords:
-  - _BUILTIN_ALPHATEST_ON
-  - _BUILTIN_AlphaClip
+  - _BUILTIN_SURFACE_TYPE_TRANSPARENT
   - _VERTEX_COLORS_ON
-  m_LightmapFlags: 4
+  m_InvalidKeywords:
+  - _ALPHABLEND_ON
+  - _BUILTIN_ALPHABLEND_ON
+  - _DISABLE_SSR_TRANSPARENT
+  - _ENABLE_FOG_ON_TRANSPARENT
+  - _SURFACE_TYPE_TRANSPARENT
+  m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - TransparentDepthPrepass
+  - TransparentDepthPostpass
+  - TransparentBackface
+  - RayTracingPrepass
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -78,21 +86,21 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - baseColorTexture:
-        m_Texture: {fileID: 2800000, guid: df9152c86dd15e94f804a2b68167ab07, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0dea7d876fbe9ab4983fc5945243a456, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BUILTIN_AlphaClip: 1
+    - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
-    - _BUILTIN_DstBlend: 0
+    - _BUILTIN_DstBlend: 10
     - _BUILTIN_QueueControl: 1
     - _BUILTIN_QueueOffset: 0
-    - _BUILTIN_SrcBlend: 1
-    - _BUILTIN_Surface: 0
+    - _BUILTIN_SrcBlend: 5
+    - _BUILTIN_Surface: 1
     - _BUILTIN_ZTest: 4
-    - _BUILTIN_ZWrite: 1
+    - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 0
     - _BumpScale: 1
     - _Cutoff: 1
@@ -102,17 +110,17 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _Mode: 3
+    - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _TEXTURE_TRANSFORM: 0
     - _UVSec: 0
     - _VERTEX_COLORS: 1
     - _ZWrite: 0
-    - alphaCutoff: 0.5
+    - alphaCutoff: -1
     - baseColorTextureRotation: 0
     - baseColorTextureTexCoord: 0
     m_Colors:
