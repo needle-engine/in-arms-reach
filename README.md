@@ -27,7 +27,7 @@ Each scene has an animated Timeline that starts playing once the first spot on a
 
 Scenes can provide additional interactive control and challenges. One of the turtles in the Water scene slowly approaches the user, and the user can collect various pieces of trash floating in the ocean.   
 
-## Rendering Overview
+### Rendering Overview
 
 A main feature of In Arm's Reach is the ability to look behind your walls and bring a virtual environment into your room. This is enabled by WebXR features that are backed by Meta's Presence Platform. 
 
@@ -45,6 +45,19 @@ We're rendering in a very specific order:
 - After this, all other scene geometry is rendered.  
 
 In a future update, we'd like to incorporate Quest Depth Sensing into rendering this pipeline, which provides real-time occlusion, for even greater immersion.
+
+### Multi-User Support
+
+To start a session with other people:
+
+1. Ensure all users have a valid Room Setup.
+2. All users should recenter the Meta Quest on a spot that’s roughly 3 metres away from your wall. If users are in the same physical location, they should recenter on the same spot.
+3. Append `?room=ABCD` to the URL and refresh the page (some random room ID).
+4. Send the full URL to others so they can join the same session.
+5. If there was a previous session in that room, click on “Menu” and “Reset” in the upper right corner of the page. This is a workaround to clear outdated synchronised data and would not be needed for a production application.
+6. Have all people enter the AR session.
+7. Once everyone has **touched a wall at least once** synchronisation is in effect. There may be a red overlay visible when a user hasn’t touched a wall at least once.
+
 
 ## Usage
 
