@@ -58,7 +58,8 @@ div.menu {
     z-index: 1000;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    font-size: 1.4em;
+    font-size: 2em;
+    letter-spacing: 2px;
     text-align: center;
     animation: pulse 2s infinite;
     text-transform: uppercase;

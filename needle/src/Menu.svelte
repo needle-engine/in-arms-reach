@@ -23,12 +23,15 @@ function setScene(index: number) {
         <span slot="label" class="uppercase">Menu</span>
         {#if context}
         <Button on:click={() => {
+            window.open("https://codeberg.org/reality-hack-2024/TABLE_102/", "_blank");
+        }}>View Code</Button>
+        <Button on:click={() => {
             context.connection.sendDeleteRemoteStateAll();
             // recreate context
             // context.recreate();
             // reload page
             window.location.reload();
-        }}>Reset</Button>
+        }}>Reset (dev)</Button>
 
         <!--
         <Button on:click={() => setScene(0)}>Water</Button>

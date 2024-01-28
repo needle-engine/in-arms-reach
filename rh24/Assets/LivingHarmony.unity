@@ -385,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &58707654
 Transform:
   m_ObjectHideFlags: 0
@@ -1855,6 +1855,11 @@ PrefabInstance:
 --- !u!4 &297248496 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3910990755373119420, guid: 4d1486d18fd6a4c469a397465e23a23f, type: 3}
+  m_PrefabInstance: {fileID: 297248495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &297248497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8771091787928289351, guid: 4d1486d18fd6a4c469a397465e23a23f, type: 3}
   m_PrefabInstance: {fileID: 297248495}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &308513719
@@ -7704,7 +7709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &438454813
 Transform:
   m_ObjectHideFlags: 0
@@ -7843,6 +7848,7 @@ GameObject:
   - component: {fileID: 448345037}
   - component: {fileID: 448345036}
   - component: {fileID: 448345039}
+  - component: {fileID: 448345040}
   m_Layer: 0
   m_Name: Export Info
   m_TagString: EditorOnly
@@ -7912,6 +7918,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repositoryUrl: https://github.com/hybridherbst/in-arms-reach.git
+--- !u!114 &448345040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448345035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2ffc5481d126c498a97e14b35c2fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meta:
+    title: In Arm's Reach
+    description: MIT RealityHack 2024 Entry
+    image: {fileID: 2800000, guid: f5afcc3efb2064dc4a77bd17b59bd4e4, type: 3}
 --- !u!1 &453763673
 GameObject:
   m_ObjectHideFlags: 0
@@ -17471,6 +17493,8 @@ GameObject:
   - component: {fileID: 1200683379}
   - component: {fileID: 1200683380}
   - component: {fileID: 1200683381}
+  - component: {fileID: 1200683382}
+  - component: {fileID: 1200683383}
   m_Layer: 0
   m_Name: XR
   m_TagString: Untagged
@@ -17564,6 +17588,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IgnoreSkinnedMeshes: 0
+--- !u!114 &1200683382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200683376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a86a2db1f5d20489f1387bdc57b5aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToExport: {fileID: 0}
+  allowCreateQuicklookButton: 1
+  autoExportAnimations: 1
+  interactive: 1
+  customBranding:
+    CheckoutTitle: In Arm's Reach
+    CheckoutSubtitle: MIT RealityHack 2024
+    CallToAction: Learn More
+    CallToActionURL: https://needle.tools
+  exportFileName: InArmsReach
+  customUsdzFile:
+    File: {fileID: 0}
+--- !u!114 &1200683383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200683376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0950bb32ad59ecd350087aefbb5116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToExclude:
+  - {fileID: 1756585665}
+  object1: {fileID: 297248497}
+  object2: {fileID: 1308075388}
+  object3: {fileID: 1732536052}
+  object4: {fileID: 2010209064}
+  object5: {fileID: 1689614414}
+  object6: {fileID: 61497057}
+  object7: {fileID: 1143092350}
+  object8: {fileID: 1539093221}
 --- !u!1001 &1233225547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18073,6 +18143,11 @@ PrefabInstance:
 --- !u!4 &1308075387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3910990755373119420, guid: 4d1486d18fd6a4c469a397465e23a23f, type: 3}
+  m_PrefabInstance: {fileID: 1308075386}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1308075388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8771091787928289351, guid: 4d1486d18fd6a4c469a397465e23a23f, type: 3}
   m_PrefabInstance: {fileID: 1308075386}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1316693915
@@ -25557,6 +25632,11 @@ PrefabInstance:
 --- !u!4 &1732536051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3910990755373119420, guid: 4d1486d18fd6a4c469a397465e23a23f, type: 3}
+  m_PrefabInstance: {fileID: 1732536050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1732536052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8771091787928289351, guid: 4d1486d18fd6a4c469a397465e23a23f, type: 3}
   m_PrefabInstance: {fileID: 1732536050}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1756585662
