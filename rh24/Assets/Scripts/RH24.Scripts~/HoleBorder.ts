@@ -19,8 +19,10 @@ export class HoleBorder extends Behaviour {
         // additive blending
         mat.blending = AdditiveBlending;
 
+        /*
         mat.stencilFunc = NotEqualStencilFunc;
         mat.stencilRef = 1;
         mat.stencilWrite = true;
+        */
     }
 }

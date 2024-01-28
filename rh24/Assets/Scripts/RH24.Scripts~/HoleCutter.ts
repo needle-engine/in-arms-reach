@@ -21,10 +21,12 @@ export class HoleCutter extends Behaviour {
                 depthFunc: AlwaysDepth,
                 colorWrite: true,
 
+                /*
                 stencilRef: 1,
                 stencilFunc: NotEqualStencilFunc,
                 stencilWrite: true,
-
+                */
+                
                 // TODO can we sample an animated cutout texture of sorts here? in worldspace?
                 fragmentShader: `
                     void main() {

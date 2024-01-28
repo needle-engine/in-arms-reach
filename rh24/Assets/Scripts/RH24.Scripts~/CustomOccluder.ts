@@ -18,10 +18,12 @@ export class CustomOccluder extends Behaviour {
             mat.color.setRGB(1, 1, 1);
             mat.opacity = 0;
 
+            /*
             mat.stencilWrite = true;
             mat.stencilRef = 1;
             mat.stencilFunc = AlwaysStencilFunc;
             mat.stencilZPass = ReplaceStencilOp;
+            */
         }
 
         this.gameObject.material = CustomOccluder.DepthCutMat;

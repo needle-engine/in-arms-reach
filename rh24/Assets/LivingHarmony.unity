@@ -17433,7 +17433,7 @@ MonoBehaviour:
   useDefaultControls: 1
   showControllerModels: 0
   showHandModels: 0
-  defaultAvatar: {fileID: 8817559676569467057, guid: 6615eeb21fa8c483eaac2747c4f0ad94, type: 3}
+  defaultAvatar: {fileID: 0}
 --- !u!4 &1200683378
 Transform:
   m_ObjectHideFlags: 0
