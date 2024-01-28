@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5189708, g: 0.54427075, b: 0.3781193, a: 1}
+  m_IndirectSpecularColor: {r: 0.5181954, g: 0.54349375, b: 0.3778543, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25575,6 +25575,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2574129081656730024, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2615754793832564669, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -25583,11 +25587,35 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3492226048009343781, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4234448759565604507, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4342389415567864351, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353571888291171350, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563704123410984781, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600008803135062190, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973928317398555181, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576920370598931408, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
@@ -25707,6 +25735,10 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[3].value
       value: 
       objectReference: {fileID: 1756585667}
+    - target: {fileID: 8114786320533827811, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8638583686014726595, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Name
       value: HandAffordance
