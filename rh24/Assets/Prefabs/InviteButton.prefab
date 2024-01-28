@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 3831834604941357544}
   - component: {fileID: 4938807069963582269}
   - component: {fileID: 2730520935650012279}
+  - component: {fileID: 8346651909886899888}
   m_Layer: 0
   m_Name: Invite
   m_TagString: Untagged
@@ -460,6 +461,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &8346651909886899888
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298690116074547053}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0478b9112885ba3418937655515258f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6946420638948409318
 PrefabInstance:
   m_ObjectHideFlags: 0
