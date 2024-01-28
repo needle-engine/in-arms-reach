@@ -17517,7 +17517,7 @@ MonoBehaviour:
   createVRButton: 1
   createARButton: 1
   createSendToQuestButton: 1
-  createQRCode: 1
+  createQRCode: 0
   usePlacementReticle: 0
   usePlacementAdjustment: 0
   arSceneScale: 1
@@ -17602,8 +17602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToExport: {fileID: 0}
   allowCreateQuicklookButton: 1
-  autoExportAnimations: 1
-  interactive: 1
+  autoExportAnimations: 0
+  interactive: 0
   customBranding:
     CheckoutTitle: In Arm's Reach
     CheckoutSubtitle: MIT RealityHack 2024
