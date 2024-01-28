@@ -3,7 +3,7 @@ import { NEPointerEvent } from "@needle-tools/engine";
 import { XRRig } from "@needle-tools/engine";
 import { Behaviour, GameObject } from "@needle-tools/engine";
 import { DistanceToWall } from "./DistanceToWall.js";
-import { ShaderChunk, AgXToneMapping, Vector3, Quaternion, Ray } from "three";
+import { ShaderChunk, AgXToneMapping, Vector3, Quaternion, Ray, MeshStandardMaterial, Mesh, BoxGeometry, Scene } from "three";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -128,14 +128,6 @@ export class CustomDepthSensing extends Behaviour {
         // adjust tonemapping if wanted
         this.context.renderer.toneMapping = AgXToneMapping;
 
-        ShaderChunk.occlusion_pars_fragment = ShaderChunk.occlusion_pars_fragment.replace(
-            `#endif`,
-            `
-            
-            
-            #endif`
-        );
-
         // Patch three.js shader chunks responsible for depth sensing.
         ShaderChunk.occlusion_fragment = ShaderChunk.occlusion_fragment.replace(
             // the line we're replacing – this just takes the existing occlusion value and fades objects out.
@@ -143,6 +135,7 @@ export class CustomDepthSensing extends Behaviour {
             // our new code – draws an intersection line and fades the objects out just a bit, but not fully.
 `
 float depthMm = Depth_GetCameraDepthInMeters(depthColor, depthUv, arrayIndex);
+
 
 // requires also patching ShaderChunk.occlusion_pars_fragment and adding some noise function
 // float noise = snoise(gl_FragCoord.xy * 0.005);
@@ -154,6 +147,8 @@ absDistance = saturate(v - absDistance) / v;
 
 gl_FragColor.rgb += vec3(absDistance * 2.0, absDistance * 2.0, absDistance * 12.0);
 gl_FragColor = mix(gl_FragColor, vec4(0.0, 0.0, 0.0, 0.0), occlusion * 0.7);
+
 `);
+
     }
 }

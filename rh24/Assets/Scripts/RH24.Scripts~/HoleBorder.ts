@@ -1,5 +1,5 @@
 import { Behaviour, serializable } from "@needle-tools/engine";
-import { AdditiveBlending, AlwaysDepth, GreaterDepth } from "three";
+import { AdditiveBlending, AlwaysDepth, GreaterDepth, GreaterStencilFunc, LessStencilFunc, NotEqualStencilFunc } from "three";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -13,9 +13,14 @@ export class HoleBorder extends Behaviour {
         this.gameObject.material.transparent = false;
         let mat = this.gameObject.material;
         this.gameObject.material = mat;
+
         mat.transparent = false;
         mat.depthFunc = GreaterDepth;
         // additive blending
         mat.blending = AdditiveBlending;
+
+        mat.stencilFunc = NotEqualStencilFunc;
+        mat.stencilRef = 1;
+        mat.stencilWrite = true;
     }
 }

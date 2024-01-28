@@ -32,7 +32,7 @@ export class NetworkedMesh extends Behaviour {
     }
 
     private onPlaneTracking = (evt: CustomEvent<WebXRPlaneTrackingEvent>) => {
-        console.error("New plane", evt.detail.context.mesh);
+        // console.error("New plane", evt.detail.context.mesh);
         const mesh = evt.detail.context.mesh as Mesh;
 
         // convert vertices back to Vector3 array
@@ -49,13 +49,13 @@ export class NetworkedMesh extends Behaviour {
         
         // cleanup - remove outdated entries
         this.geometry = this.geometry.filter(x => x.version === date);
-        console.log("UPDATING GEOMETRY", this.geometry.length)
+        // console.log("UPDATING GEOMETRY", this.geometry.length)
     }
 
     private lastProcessingTime: number = 0;
     private lastDataReceiveTime: number = 0;
     private onNewGeometry(newGeometry, oldGeometry) {
-        console.log("new geometry received",  newGeometry);
+        // console.log("new geometry received",  newGeometry);
         this.lastDataReceiveTime = Date.now();
     }
 
@@ -66,7 +66,7 @@ export class NetworkedMesh extends Behaviour {
 
         const newGeometry = this.geometry;
 
-        console.log("new geometry", this.guid, newGeometry);
+        // console.log("new geometry", this.guid, newGeometry);
 
         const planeTracking = GameObject.findObjectOfType(WebXRPlaneTracking);
         if (!planeTracking) {

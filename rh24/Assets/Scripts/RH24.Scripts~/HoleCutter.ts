@@ -1,5 +1,5 @@
 import { Behaviour, serializable } from "@needle-tools/engine";
-import { AlwaysDepth, MeshBasicMaterial } from "three";
+import { AlwaysDepth, EqualStencilFunc, MeshBasicMaterial, NotEqualStencilFunc } from "three";
 import { ShaderMaterial } from "three/src/materials/ShaderMaterial";
 
 // Documentation → https://docs.needle.tools/scripting
@@ -20,6 +20,11 @@ export class HoleCutter extends Behaviour {
                 depthTest: true,
                 depthFunc: AlwaysDepth,
                 colorWrite: true,
+
+                stencilRef: 1,
+                stencilFunc: NotEqualStencilFunc,
+                stencilWrite: true,
+
                 // TODO can we sample an animated cutout texture of sorts here? in worldspace?
                 fragmentShader: `
                     void main() {
