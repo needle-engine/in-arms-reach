@@ -4,15 +4,15 @@ let expanded = true;
 
 </script>
 
-<div class="group">
+<div class="group" class:minimal={!expanded}>
+    {#if expanded}
+    <slot></slot>
+    {/if}
+
     {#if $$slots.label}
     <button on:click={() => expanded = !expanded}>
         <slot name="label"></slot>
     </button>
-    {/if}
-
-    {#if expanded}
-    <slot></slot>
     {/if}
 </div>
 
@@ -23,6 +23,10 @@ div.group {
     border-radius: 20px;
     padding: 6px;
     margin: 6px;
+}
+
+div.group.minimal {
+    background: none;
 }
 
 button {

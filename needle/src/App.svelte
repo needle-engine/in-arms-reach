@@ -2,6 +2,7 @@
 import NeedleEngine from "./NeedleEngine.svelte";
 import Menu from "./Menu.svelte";
 import { Context } from "@needle-tools/engine";
+import logo from "./lib/titleImage.png";
 
 let context: Context;
 let wasPlaced = false;
@@ -10,15 +11,34 @@ $: console.log("Was placed changed", wasPlaced);
 
 </script>
 
+<div class="logo">
+    <img alt="Logo" src={logo} />
+</div>
+
 <div class="vignette"></div>
 <div class="menu" class:hidden={wasPlaced}>
-    <p>Click and drag<br/>to reveal</p>
-    <p>Sound on</p>
+    <p>Drag to reveal</p>
+    <p class="subtitle">Sound on</p>
 </div>
 <NeedleEngine bind:context={context} bind:wasPlaced={wasPlaced}></NeedleEngine>
+
 <Menu bind:context={context}></Menu>
 
 <style>
+
+div.logo {
+    position:absolute;
+    left: 10px;
+    top: -30px;
+    z-index: 1000;
+    -webkit-filter: drop-shadow(5px 6px 26px rgba(0,0,0,0.5));
+    filter: drop-shadow(5px 6px 26px rgba(0,0,0,0.5));
+}
+
+div.logo img {
+    width: min(300px, 50vw);
+
+}
 
 .vignette {
   position: fixed;
@@ -38,16 +58,25 @@ div.menu {
     z-index: 1000;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    font-size: 2em;
+    font-size: 1.4em;
     text-align: center;
     animation: pulse 2s infinite;
     text-transform: uppercase;
     font-weight: bold;
     text-shadow: 10px 20px 50px rgb(69, 107, 139);
+    color: grey;
 }
 
 div.menu p {
     transition: opacity 0.5s ease-in-out;
+    margin:0;
+    font-weight: bold;
+    color: rgb(69, 107, 139);
+}
+
+div.menu p.subtitle {
+    font-size: 1em;
+    font-weight: normal;
 }
 
 div.menu.hidden p {

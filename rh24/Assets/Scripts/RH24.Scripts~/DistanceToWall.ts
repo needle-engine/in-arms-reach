@@ -63,6 +63,8 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
         DistanceToWall.allClones = [];
         DistanceToWall.hadFirstPlacement = false;
+
+        Context.Current.domElement.dispatchEvent(new CustomEvent("reset-placement"));
     }
 
     private lastOrigin: any;

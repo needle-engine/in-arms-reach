@@ -29,9 +29,12 @@ function setScene(index: number) {
             // reload page
             window.location.reload();
         }}>Reset</Button>
+
+        <!--
         <Button on:click={() => setScene(0)}>Water</Button>
         <Button on:click={() => setScene(1)}>Ice</Button>
         <Button on:click={() => setScene(2)}>Fire</Button>
+        -->
         <!--
         <Button on:click={() => { GameObject.findObjectOfType(CamRotator)?.recenter() }}>Recenter</Button>
         -->
@@ -44,7 +47,7 @@ function setScene(index: number) {
 div.container {
     position: absolute;
     top: 0px;
-    left: 0px;
+    right: 0px;
     font-size: 0.8em;
     display: flex;
     flex-direction: column;
