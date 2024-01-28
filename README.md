@@ -1,8 +1,14 @@
 # In Arm's Reach
 
+![In Arm's Reach Hero Image](https://hybridherbst.github.io/in-arms-reach/include/in-arms-reach.jpg)
+
+Live page: [hybridherbst.github.io/in-arms-reach](https://hybridherbst.github.io/in-arms-reach/)  
+
 ## Setup
 
-"In Arm's Reach" is a WebXR app created using [Needle Engine](https://needle.tools) and Unity. To get started, you will need to install the following:  
+"In Arm's Reach" is a WebXR app created using [Needle Engine](https://needle.tools) and Unity for MIT RealityHack 2024. 
+
+To get started, you will need to install the following:  
 - Unity 2022.3.17f1
 - Node.js v18+ (v20.9.0 used here)
 - VS Code
