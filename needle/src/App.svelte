@@ -3,6 +3,7 @@ import NeedleEngine from "./NeedleEngine.svelte";
 import Menu from "./Menu.svelte";
 import { Context } from "@needle-tools/engine";
 import logo from "./lib/titleImage.png";
+import swipe from "./lib/swipe-gesture.png";
 
 let context: Context;
 let wasPlaced = false;
@@ -17,8 +18,11 @@ $: console.log("Was placed changed", wasPlaced);
 
 <div class="vignette"></div>
 <div class="menu" class:hidden={wasPlaced}>
-    <p>Drag to reveal</p>
-    <p class="subtitle">Sound on</p>
+    <img src={swipe}/>
+    <div class="anim">
+      <p>Drag to reveal</p>
+      <p class="subtitle">Sound on</p>
+    </div>
 </div>
 <NeedleEngine bind:context={context} bind:wasPlaced={wasPlaced}></NeedleEngine>
 
@@ -53,7 +57,7 @@ div.logo img {
 
 div.menu {
     position: absolute;
-    top: 40%;
+    top: 48%;
     left: 50%;
     z-index: 1000;
     transform: translate(-50%, -50%);
@@ -61,11 +65,16 @@ div.menu {
     font-size: 2em;
     letter-spacing: 2px;
     text-align: center;
-    animation: pulse 2s infinite;
     text-transform: uppercase;
+    line-height: 1.4em;
     font-weight: bold;
     text-shadow: 10px 20px 50px rgb(69, 107, 139);
     color: grey;
+    transition: opacity 0.4s linear;
+}
+
+div.anim {
+
 }
 
 div.menu p {
@@ -80,8 +89,25 @@ div.menu p.subtitle {
     font-weight: normal;
 }
 
-div.menu.hidden p {
+div.menu.hidden {
     opacity: 0;
+}
+
+.menu img {
+  width: 4em;
+  animation: swipe 3.3s infinite;
+}
+
+@keyframes swipe {
+  0% {
+    transform: translateX(-40px) rotate(-20deg);
+  }
+  50% {
+    transform: translateX(30px) rotate(20deg) scale(1.1);
+  }
+  100% {
+    transform: translateX(-40px) rotate(-20deg);
+  }
 }
 
 @keyframes pulse {
@@ -95,4 +121,5 @@ div.menu.hidden p {
     opacity: 0.2;
   }
 }
+
 </style>

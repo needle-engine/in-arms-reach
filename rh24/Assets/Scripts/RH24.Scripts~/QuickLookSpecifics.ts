@@ -2,8 +2,6 @@ import { USDZExporter } from "@needle-tools/engine";
 import { GameObject } from "@needle-tools/engine";
 import { Behaviour, serializable } from "@needle-tools/engine";
 import { DistanceToWall } from "./DistanceToWall.js";
-import { NeedleXRSession } from "@needle-tools/engine";
-import { showBalloonMessage } from "@needle-tools/engine";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -30,15 +28,6 @@ export class QuickLookSpecifics extends Behaviour {
     object8: GameObject;
 
     start() {
-
-        const waitForQL = async () => {
-            showBalloonMessage("VR: " + await NeedleXRSession.isVRSupported());
-        }
-
-        waitForQL();
-        
-        console.log("Exclude: ", this.objectsToExclude);
-        console.log("Exlude single:", this.object1);
 
         this.objectsToExclude.push(...[this.object1, this.object2, this.object3, this.object4, this.object5, this.object6, this.object7, this.object8]);
 

@@ -4,6 +4,8 @@
 
 **Video:** ["In Arm's Reach" on YouTube](https://www.youtube.com/watch?v=_xDjOlSIrU0)  
 **WebXR App:** [hybridherbst.github.io/in-arms-reach](https://hybridherbst.github.io/in-arms-reach/)  
+**More Details:** [Devpost Submission](https://devpost.com/software/test-h62z5t)  
+**Contact Us:** [via email](mailto:katja.rempel3@gmail.com)
 
 [![In Arm's Reach hero Image](https://hybridherbst.github.io/in-arms-reach/include/in-arms-reach.jpg)](https://www.youtube.com/watch?v=_xDjOlSIrU0)
 
@@ -119,6 +121,8 @@ The experience has been mainly designed for and tested on Quest 3 with hand trac
 - Needle Engine 3.26.6-alpha (installed as dependency of the Unity project)
 
 ## Team
+
+**Contact us:** [via email](mailto:katja.rempel3@gmail.com)
 
 - Katja Rempel (interaction design, storyboarding, UI)
 - Zack Wang (sound design, music)

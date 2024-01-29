@@ -17522,7 +17522,7 @@ MonoBehaviour:
   usePlacementAdjustment: 0
   arSceneScale: 1
   useXRAnchor: 0
-  useQuicklookExport: 1
+  useQuicklookExport: 0
   useDepthSensing: 0
   useDefaultControls: 0
   showControllerModels: 1
@@ -17601,7 +17601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToExport: {fileID: 0}
-  allowCreateQuicklookButton: 1
+  allowCreateQuicklookButton: 0
   autoExportAnimations: 0
   interactive: 0
   customBranding:

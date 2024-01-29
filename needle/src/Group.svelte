@@ -5,36 +5,44 @@ export let expanded = true;
 </script>
 
 <div class="group" class:minimal={!expanded}>
-    {#if expanded}
-    <slot></slot>
-    {/if}
 
     {#if $$slots.label}
     <button on:click={() => expanded = !expanded}>
         <slot name="label"></slot>
     </button>
     {/if}
+    
+    {#if expanded}
+    <slot></slot>
+    {/if}
+
 </div>
 
 <style>
 
 div.group {
-    background-color: rgba(255, 255, 255, 0.795);
-    border-radius: 20px;
-    padding: 6px;
-    margin: 6px;
+    background-color: rgb(213, 221, 228);
+    border-radius: 12px;
+    padding: 36px;
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
 }
 
 div.group.minimal {
     background: none;
+    box-shadow: none;
+    padding: 12px;
 }
 
 button {
     border: 0;
     outline: 0;
-    color: rgb(90, 90, 90);
+    color: rgb(0, 0, 0);
     background: none;
     margin: 5px;
+    font-size: 1em;
 }
 
 </style>
