@@ -20,15 +20,20 @@ $: _isQuest = isQuest();
 
 <div class="vignette"></div>
 
-{#if !_isQuest}
 <div class="menu" class:hidden={wasPlaced}>
-    <img src={swipe}/>
+  {#if !_isQuest}
+  <img src={swipe} alt="Infographic explaining to draw on the screen"/>
     <div class="anim">
-      <p>Drag to reveal</p>
-      <p class="subtitle">Sound on</p>
+      <p>Draw to reveal</p>
+      <p class="subtitle">Sound on!</p>
     </div>
-</div>
-{/if}
+    {:else}
+    <div>
+      <p>Tap buttons below</p>
+      <p class="subtitle">to start the experience</p>
+    </div>
+    {/if}
+  </div>
 
 <NeedleEngine bind:context={context} bind:wasPlaced={wasPlaced}></NeedleEngine>
 
