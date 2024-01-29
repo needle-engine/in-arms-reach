@@ -27,6 +27,9 @@ div {
     animation: fadein 1s ease-in-out;
     animation-delay: 2s;
     animation-fill-mode: backwards;
+
+    width: 100vw;
+    text-align: center;
 }
 
 img {

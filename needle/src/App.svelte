@@ -1,15 +1,16 @@
 <script lang="ts">
 import NeedleEngine from "./NeedleEngine.svelte";
 import Menu from "./Menu.svelte";
-import { Context } from "@needle-tools/engine";
+import { Context, isQuest } from "@needle-tools/engine";
 import logo from "./lib/titleImage.png";
 import swipe from "./lib/swipe-gesture.png";
-  import MadeWithNeedle from "./MadeWithNeedle.svelte";
+import MadeWithNeedle from "./MadeWithNeedle.svelte";
 
 let context: Context;
 let wasPlaced = false;
 
 $: console.log("Was placed changed", wasPlaced);
+$: _isQuest = isQuest();
 
 </script>
 
@@ -18,6 +19,8 @@ $: console.log("Was placed changed", wasPlaced);
 </div>
 
 <div class="vignette"></div>
+
+{#if !_isQuest}
 <div class="menu" class:hidden={wasPlaced}>
     <img src={swipe}/>
     <div class="anim">
@@ -25,6 +28,8 @@ $: console.log("Was placed changed", wasPlaced);
       <p class="subtitle">Sound on</p>
     </div>
 </div>
+{/if}
+
 <NeedleEngine bind:context={context} bind:wasPlaced={wasPlaced}></NeedleEngine>
 
 <Menu bind:context={context}></Menu>
@@ -74,6 +79,7 @@ div.menu {
     text-shadow: 10px 20px 50px rgb(69, 107, 139);
     color: grey;
     transition: opacity 0.4s linear;
+    width: 90vw;
 }
 
 div.anim {
@@ -125,4 +131,15 @@ div.menu.hidden {
   }
 }
 
+@media (max-height: 500px) {
+  div.menu {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 500px) {
+  div.menu {
+    font-size: 1.3em;
+  }
+}
 </style>

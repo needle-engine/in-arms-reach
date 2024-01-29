@@ -24,6 +24,7 @@ div.group {
     background-color: rgb(213, 221, 228);
     border-radius: 12px;
     padding: 36px;
+    padding-top: 12px;
     margin: 12px;
     display: flex;
     flex-direction: column;

@@ -67,7 +67,10 @@ div.container {
     flex-direction: row;
     align-items: flex-start;
     font-size: 1.35em;
-    z-index: 2000;
+    z-index: 20000;
+    justify-content: center;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 
 .uppercase {
@@ -107,5 +110,4 @@ a:hover {
 a img {
     max-width: 200px;
 }
-
 </style>
