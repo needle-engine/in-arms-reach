@@ -77,6 +77,11 @@ div.container {
     color: rgb(69, 107, 139);
 }
 
+.uppercase:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 h2, h4 {
     margin: 5px;
 }

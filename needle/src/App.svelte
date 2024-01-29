@@ -4,6 +4,7 @@ import Menu from "./Menu.svelte";
 import { Context } from "@needle-tools/engine";
 import logo from "./lib/titleImage.png";
 import swipe from "./lib/swipe-gesture.png";
+  import MadeWithNeedle from "./MadeWithNeedle.svelte";
 
 let context: Context;
 let wasPlaced = false;
@@ -27,6 +28,8 @@ $: console.log("Was placed changed", wasPlaced);
 <NeedleEngine bind:context={context} bind:wasPlaced={wasPlaced}></NeedleEngine>
 
 <Menu bind:context={context}></Menu>
+
+<MadeWithNeedle></MadeWithNeedle>
 
 <style>
 
