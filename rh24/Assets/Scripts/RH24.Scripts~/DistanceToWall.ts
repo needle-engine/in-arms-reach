@@ -153,6 +153,9 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     static allClones: GameObject[] = [];
     private isPlacing: boolean = false;
+
+    // TODO change this to allow multi-touch handling to work better - 
+    // right now it's pretty crazy
     private static lastPlacementPosition: Vector3 = new Vector3();
 
     onPointerUp(args: PointerEventData) {
@@ -209,6 +212,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         }
     }
 
+    static lastPlacementTime: number = 0;
     static checkNewPlacement(args: { point: Vector3, normal: Vector3, object: GameObject }) {
         
         const p = args.point;
@@ -216,10 +220,14 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         const i = args.object;
 
         const dist = DistanceToWall.lastPlacementPosition.distanceTo(p);
+        const now = Date.now();
+        const timeDelta = now - DistanceToWall.lastPlacementTime;
 
-        if (dist > 0.15) {
+        // avoid too frequent placements to happen – better would be a check per pointer
+        if (dist > 0.15 && timeDelta > 100) {
             DistanceToWall.placeAt({ point: p, normal: n!, object: i as GameObject });
             DistanceToWall.lastPlacementPosition.copy(p);
+            DistanceToWall.lastPlacementTime = now;
         }
     }
 }

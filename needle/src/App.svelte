@@ -5,6 +5,7 @@ import { Context, isQuest } from "@needle-tools/engine";
 import logo from "./lib/titleImage.png";
 import swipe from "./lib/swipe-gesture.png";
 import MadeWithNeedle from "./MadeWithNeedle.svelte";
+import laurels from "./lib/laurels.png";
 
 let context: Context;
 let wasPlaced = false;
@@ -16,6 +17,7 @@ $: _isQuest = isQuest();
 
 <div class="logo">
     <img alt="Logo" src={logo} />
+    <img src={laurels} alt="Laurels" style="margin-top: 40px;" />
 </div>
 
 <div class="vignette"></div>
@@ -35,6 +37,8 @@ $: _isQuest = isQuest();
     {/if}
   </div>
 
+<div class="touch-blocker"></div>
+
 <NeedleEngine bind:context={context} bind:wasPlaced={wasPlaced}></NeedleEngine>
 
 <Menu bind:context={context}></Menu>
@@ -50,11 +54,25 @@ div.logo {
     z-index: 1000;
     -webkit-filter: drop-shadow(5px 6px 26px rgba(0,0,0,0.5));
     filter: drop-shadow(5px 6px 26px rgba(0,0,0,0.5));
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 div.logo img {
     width: min(300px, 50vw);
 
+}
+
+/** this prevents clicking on the scene accidentally in the surrounding of the XR buttons */
+div.touch-blocker {
+  position:absolute;
+  bottom: 0;
+  left: calc(50% - 350px);
+  width: 700px;
+  height: 200px;
+  z-index: 140;
 }
 
 .vignette {
