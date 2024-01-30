@@ -5,7 +5,7 @@ import { Context, isQuest } from "@needle-tools/engine";
 import logo from "./lib/titleImage.png";
 import swipe from "./lib/swipe-gesture.png";
 import MadeWithNeedle from "./MadeWithNeedle.svelte";
-import laurels from "./lib/laurels.png";
+import laurels from "./lib/laurels-dark.png";
 
 let context: Context;
 let wasPlaced = false;
@@ -16,8 +16,11 @@ $: _isQuest = isQuest();
 </script>
 
 <div class="logo">
-    <img alt="Logo" src={logo} />
-    <img src={laurels} alt="Laurels" style="margin-top: 40px;" />
+    <img alt="Logo" src={logo} /><br/>
+</div>
+
+<div class="laurels">
+  <img class:hidden={wasPlaced} src={laurels} alt="Laurels" class="laurels" />
 </div>
 
 <div class="vignette"></div>
@@ -52,16 +55,43 @@ div.logo {
     left: 10px;
     top: -30px;
     z-index: 1000;
-    -webkit-filter: drop-shadow(5px 6px 26px rgba(0,0,0,0.5));
-    filter: drop-shadow(5px 6px 26px rgba(0,0,0,0.5));
 
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-div.logo img {
+div.logo img  {
     width: min(300px, 50vw);
+}
+
+div.laurels {
+  position: absolute;
+  bottom: 150px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+div.laurels img {
+  max-width: 100%;
+  max-height: 30vh;
+}  
+@media (max-height: 800px) and (min-width: 500px) {
+  div.laurels {
+    bottom: 40px;
+    left: 10px;
+    width: auto;
+  }
+}
+
+@media (max-width: 750px) and (max-height: 650px) {
+  div.laurels {
+    display:none;
+  }
 
 }
 
@@ -71,7 +101,7 @@ div.touch-blocker {
   bottom: 0;
   left: calc(50% - 350px);
   width: 700px;
-  height: 200px;
+  height: 180px;
   z-index: 140;
 }
 
@@ -88,7 +118,7 @@ div.touch-blocker {
 
 div.menu {
     position: absolute;
-    top: 48%;
+    top: 40%;
     left: 50%;
     z-index: 1000;
     transform: translate(-50%, -50%);
@@ -121,8 +151,12 @@ div.menu p.subtitle {
     font-weight: normal;
 }
 
-div.menu.hidden {
+.hidden {
     opacity: 0;
+}
+
+.laurels, .logo {
+  pointer-events: none;
 }
 
 .menu img {
@@ -163,6 +197,27 @@ div.menu.hidden {
 @media (max-width: 500px) {
   div.menu {
     font-size: 1.3em;
+  }
+
+  div.logo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  div.logo img {
+    width: auto;
+    height: min(300px, 50vw);
+  }
+
+  div.logo img.laurels {
+    margin-top: -60px;
+  }
+}
+
+@media (min-width: 800px) and (min-height: 500px) {
+  div.logo img {
+    width: auto;
+    height: min(300px, 50vw);  
   }
 }
 </style>
