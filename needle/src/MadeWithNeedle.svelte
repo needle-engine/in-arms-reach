@@ -30,6 +30,7 @@ div {
 
     width: 100vw;
     text-align: center;
+    z-index: 10000;
 }
 
 img {
