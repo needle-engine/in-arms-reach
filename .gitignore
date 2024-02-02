@@ -9,3 +9,4 @@ rh24/*.csproj
 rh24/*.sln
 rh24/Temp
 .DS_Store
+rh24/Recordings

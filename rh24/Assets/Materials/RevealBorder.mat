@@ -32,7 +32,7 @@ Material:
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 900
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses: []
@@ -84,13 +84,13 @@ Material:
     m_Floats:
     - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
-    - _BUILTIN_CullMode: 2
+    - _BUILTIN_CullMode: 0
     - _BUILTIN_DstBlend: 10
     - _BUILTIN_QueueControl: 1
     - _BUILTIN_QueueOffset: 0
     - _BUILTIN_SrcBlend: 5
     - _BUILTIN_Surface: 1
-    - _BUILTIN_ZTest: 4
+    - _BUILTIN_ZTest: 2
     - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 0
     - _BumpScale: 1
@@ -111,7 +111,7 @@ Material:
     - _UVSec: 0
     - _VERTEX_COLORS: 1
     - _ZWrite: 1
-    - alphaCutoff: 0.01
+    - alphaCutoff: 0.418
     - baseColorTextureRotation: 0
     - baseColorTextureTexCoord: 0
     m_Colors:
