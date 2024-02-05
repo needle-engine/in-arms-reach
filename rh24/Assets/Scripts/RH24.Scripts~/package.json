@@ -4,11 +4,11 @@
   "main": "index.ts",
   "dependencies": {},
   "peerDependencies": {
-	  "@needle-tools/engine": "^3.32.6-alpha",
+	  "@needle-tools/engine": "^3.32.14-alpha",
 	  "three": "npm:@needle-tools/three@^0.160.2"
 	},
   "devDependencies": {
-	  "@needle-tools/engine": "^3.32.6-alpha",
+	  "@needle-tools/engine": "^3.32.14-alpha",
 	  "three": "npm:@needle-tools/three@^0.160.2",
 	  "@types/three": "0.160.0"
 	}

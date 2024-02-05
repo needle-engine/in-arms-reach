@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.needle.engine-exporter": {
-      "version": "3.32.6-exp",
+      "version": "3.32.14-exp",
       "depth": 0,
       "source": "registry",
       "dependencies": {

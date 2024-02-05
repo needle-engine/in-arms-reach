@@ -34,7 +34,7 @@ export class CustomDepthSensing extends Behaviour {
 
     onEnterXR(args: NeedleXREventArgs) {
         if (args.xr.isVR) {
-            this.firstPlacement(new Vector3(), new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.PI));
+            // this.firstPlacement(new Vector3(), new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), 1 * Math.PI));
         }
     }
 

@@ -9,7 +9,7 @@
     "gltf:transform": "npm run transform --prefix node_modules/@needle-tools/gltf-build-pipeline"
   },
   "dependencies": {
-	  "@needle-tools/engine": "^3.32.6-alpha",
+	  "@needle-tools/engine": "^3.32.14-alpha",
 	  "three": "npm:@needle-tools/three@^0.160.2",
 	  "rh24.scripts": "file:./../rh24/Assets/Scripts/RH24.Scripts~"
 	},
