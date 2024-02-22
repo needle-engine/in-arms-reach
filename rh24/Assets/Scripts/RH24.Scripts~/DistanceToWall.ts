@@ -73,14 +73,21 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     private lastOrigin: any;
     private lastSpace: GameObject;
+
+    private static get orbit() {
+        if (!this._orbit) {
+            this._orbit = GameObject.findObjectOfType(OrbitControls);
+        }
+        return this._orbit;
+    }
+    private static _orbit: OrbitControls|null = null;
     onPointerDown(args: PointerEventData) {
 
         // We can completely disable this once we have proper "touch wall" logic in place
         if (!debugReach && args.event.origin instanceof NeedleXRController) return;
         if (!args.point) return;
 
-        const orbit = GameObject.findObjectOfType(OrbitControls);
-        if (orbit) orbit.enabled = false;
+        if(DistanceToWall.orbit) DistanceToWall.orbit.enabled = false;
         
         this.isPlacing = true;
         DistanceToWall.lastPlacementPosition.copy(args.point);
@@ -161,8 +168,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     onPointerUp(args: PointerEventData) {
         this.isPlacing = false;
 
-        const orbit = GameObject.findObjectOfType(OrbitControls);
-        if (orbit) orbit.enabled = true;
+        if(DistanceToWall.orbit) DistanceToWall.orbit.enabled = true;
     }
 
     private ray: Ray = new Ray();
@@ -175,8 +181,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         if (this.isPlacing && this.context.input.getPointerPressedCount() === 0) {
             console.error("oops");
 
-            const orbit = GameObject.findObjectOfType(OrbitControls);
-            if (orbit) orbit.enabled = true;
+            if (DistanceToWall.orbit) DistanceToWall.orbit.enabled = true;
 
             this.isPlacing = false;
         }
