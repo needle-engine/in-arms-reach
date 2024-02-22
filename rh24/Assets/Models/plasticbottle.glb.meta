@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: b13128e688f9c1046b96889371fb7b35
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Bottle1
+    second: {fileID: 2100000, guid: 89cdba0702ba05e4dad7780821e5e4ab, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -28,11 +33,11 @@ ScriptedImporter:
   _textureCompression: -50
   optimizeGameObjects: 0
   materials:
-  - {instanceID: 0}
+  - {fileID: 2637402005064045885, guid: b13128e688f9c1046b96889371fb7b35, type: 3}
   textures:
-  - {instanceID: 0}
-  - {instanceID: 0}
-  - {instanceID: 0}
+  - {fileID: -2066232189364733474, guid: b13128e688f9c1046b96889371fb7b35, type: 3}
+  - {fileID: 1841159900602761908, guid: b13128e688f9c1046b96889371fb7b35, type: 3}
+  - {fileID: 1577189942926608401, guid: b13128e688f9c1046b96889371fb7b35, type: 3}
   hasSceneData: 1
   hasAnimationData: 0
   hasMaterialData: 1
@@ -48,13 +53,13 @@ ScriptedImporter:
     used: 1
     required: 0
   _textures:
-  - texture: {instanceID: 0}
+  - texture: {fileID: -2066232189364733474, guid: b13128e688f9c1046b96889371fb7b35, type: 3}
     shouldBeLinear: 0
     shouldBeNormalMap: 0
-  - texture: {instanceID: 0}
+  - texture: {fileID: 1841159900602761908, guid: b13128e688f9c1046b96889371fb7b35, type: 3}
     shouldBeLinear: 1
     shouldBeNormalMap: 1
-  - texture: {instanceID: 0}
+  - texture: {fileID: 1577189942926608401, guid: b13128e688f9c1046b96889371fb7b35, type: 3}
     shouldBeLinear: 0
     shouldBeNormalMap: 0
   _mainAssetIdentifier: scenes/Scene

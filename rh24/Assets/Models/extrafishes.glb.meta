@@ -2,7 +2,22 @@ fileFormatVersion: 2
 guid: 765c400c98ce44aa18ec7744f1ca374e
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlantic_herring_body
+    second: {fileID: 2100000, guid: af786e793de659e4d8a27a7f5a3e3210, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlantic_herring_corneas
+    second: {fileID: 2100000, guid: 894b2bb1fe0351d45b221f39a1585f9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material_0
+    second: {fileID: 2100000, guid: 4bdc54f1d3dd4824ab1e6701533c2c86, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 

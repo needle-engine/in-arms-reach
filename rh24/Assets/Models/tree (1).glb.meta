@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: 5dcab1faa2da848ce9054ae47e191644
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 9ec9a68492a324d4eb1482d7dd2a373b, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -28,7 +33,7 @@ ScriptedImporter:
   _textureCompression: -50
   optimizeGameObjects: 0
   materials:
-  - {instanceID: 0}
+  - {fileID: -6478536213147159724, guid: 5dcab1faa2da848ce9054ae47e191644, type: 3}
   textures: []
   hasSceneData: 1
   hasAnimationData: 0
