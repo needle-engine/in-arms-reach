@@ -9,6 +9,7 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public bool @doubleSided = false;
 		public void OnEnable(){}
+		public void start(){}
 	}
 }
 
