@@ -91,7 +91,7 @@ export class CustomDepthSensing extends Behaviour {
             if (debug)
                 Gizmos.DrawLine(p, p.clone().add(n2!), 0xffff00, 2);
 
-            DistanceToWall.checkNewPlacement({ point: p, normal: i.normal!, object: o });
+            DistanceToWall.checkNewPlacement({ point: p, normal: i.normal!, object: o, id: args.pointerId });
         }
     }
 

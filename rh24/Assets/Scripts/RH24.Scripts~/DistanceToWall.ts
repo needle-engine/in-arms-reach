@@ -73,6 +73,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     private lastOrigin: any;
     private lastSpace: GameObject;
+    private lastPointerId: number = -1;
 
     private static get orbit() {
         if (!this._orbit) {
@@ -90,9 +91,10 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         if(DistanceToWall.orbit) DistanceToWall.orbit.enabled = false;
         
         this.isPlacing = true;
-        DistanceToWall.lastPlacementPosition.copy(args.point);
+        DistanceToWall.lastPlacementPositions[args.pointerId] = args.point;
         this.lastOrigin = args.event.origin;
         this.lastSpace = args.event.space as GameObject;
+        this.lastPointerId = args.pointerId;
 
         if (debug) {
             console.log("POINTER CLICk")
@@ -109,7 +111,6 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
     }
 
     static placeAt(args: { point: Vector3, normal: Vector3, object: GameObject }) {
-
         const obj = CustomDepthSensing.instance.revealObject;
         if (!obj) return;
 
@@ -118,7 +119,6 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         const worldRotation = args.object.worldQuaternion;
         normal.applyQuaternion(worldRotation);
         const normalOffsetPoint = args.point.clone().sub(normal);
-
         if (debug) {
             Gizmos.DrawLine(args.point, normalOffsetPoint, 0xff0000, 2);
         }
@@ -163,7 +163,7 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     // TODO change this to allow multi-touch handling to work better - 
     // right now it's pretty crazy
-    private static lastPlacementPosition: Vector3 = new Vector3();
+    private static lastPlacementPositions: Map<number, Vector3> = new Map();
 
     onPointerUp(args: PointerEventData) {
         this.isPlacing = false;
@@ -206,33 +206,32 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
             if (debug)
                 Gizmos.DrawLine(p, p.clone().add(n!), 0x00ff00, 2);
 
-            DistanceToWall.checkNewPlacement({ point: p, normal: n!, object: i.object as GameObject });
-
-            const dist = DistanceToWall.lastPlacementPosition.distanceTo(p);
-
-            if (dist > 0.15) {
-                DistanceToWall.placeAt({ point: p, normal: n!, object: i.object as GameObject });
-                DistanceToWall.lastPlacementPosition.copy(p);
-            }
+            DistanceToWall.checkNewPlacement({ point: p, normal: n!, object: i.object as GameObject, id: this.lastPointerId });
         }
     }
 
     static lastPlacementTime: number = 0;
-    static checkNewPlacement(args: { point: Vector3, normal: Vector3, object: GameObject }) {
+    static checkNewPlacement(args: { point: Vector3, normal: Vector3, object: GameObject, id: number }): boolean {
         
         const p = args.point;
         const n = args.normal;
         const i = args.object;
+        const id = args.id;
 
-        const dist = DistanceToWall.lastPlacementPosition.distanceTo(p);
-        const now = Date.now();
+        const now = Context.Current.time.time;
         const timeDelta = now - DistanceToWall.lastPlacementTime;
-
         // avoid too frequent placements to happen – better would be a check per pointer
-        if (dist > 0.15 && timeDelta > 100) {
+        if (DistanceToWall.hasMinDistance(p, id, 0.15) && timeDelta > 0.1) {
             DistanceToWall.placeAt({ point: p, normal: n!, object: i as GameObject });
-            DistanceToWall.lastPlacementPosition.copy(p);
+            DistanceToWall.lastPlacementPositions[id] = p;
             DistanceToWall.lastPlacementTime = now;
+            return true;
         }
+        return false;
+    }
+
+    static hasMinDistance(point: Vector3, id: number, min: number): boolean {
+        if (!DistanceToWall.lastPlacementPositions[id]) return true;
+        else return DistanceToWall.lastPlacementPositions[id].distanceTo(point) > min;
     }
 }
