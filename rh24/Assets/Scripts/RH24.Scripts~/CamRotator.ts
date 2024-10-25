@@ -63,8 +63,8 @@ export class CamRotator extends Behaviour {
     private connectDeviceMotionEvents() {
         window.addEventListener('deviceorientation', (event) => {  
 
-            this.useMouseData = false;
             if (!event.alpha || !event.beta || !event.gamma) return;
+            this.useMouseData = false;
 
             // convert alpha, beta, gamma to radians
             const alpha = MathUtils.degToRad(event.alpha); //z

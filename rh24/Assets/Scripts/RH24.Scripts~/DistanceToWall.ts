@@ -27,6 +27,10 @@ export class DistanceToWall extends Behaviour {
         DistanceToWall._instances.push(this.gameObject);
 
         console.log("DistanceToWall enabled", this.gameObject);
+        this.gameObject.layers.set(0);
+        setTimeout(() => {
+            this.gameObject.layers.set(0);
+        }, 100);
     }
 
     onDisable() {
