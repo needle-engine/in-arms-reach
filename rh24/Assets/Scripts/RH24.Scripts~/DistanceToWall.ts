@@ -26,7 +26,7 @@ export class DistanceToWall extends Behaviour {
         this.gameObject.addComponent(ObjectRaycaster);
         DistanceToWall._instances.push(this.gameObject);
 
-        console.log("DistanceToWall enabled");
+        console.log("DistanceToWall enabled", this.gameObject);
     }
 
     onDisable() {

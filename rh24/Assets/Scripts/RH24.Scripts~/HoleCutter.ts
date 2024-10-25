@@ -1,4 +1,4 @@
-import { Behaviour, Renderer, serializable } from "@needle-tools/engine";
+import { Behaviour, InstancingHandler, Renderer, serializable } from "@needle-tools/engine";
 import { AlwaysDepth, EqualStencilFunc, MeshBasicMaterial, NotEqualStencilFunc } from "three";
 import { ShaderMaterial } from "three/src/materials/ShaderMaterial";
 
@@ -36,7 +36,12 @@ export class HoleCutter extends Behaviour {
 
     start() {
         let rend = this.gameObject.getComponentInChildren(Renderer)!;
-        if(rend.handles && rend.handles.length >= 0) rend.handles[0].instancer.inst.renderOrder = -90;
+        if (rend.instances) {
+            for (const inst of rend.instances) {
+                inst.renderer["_batchedMesh"].renderOrder = -90;
+            }
+        }
+        // if(rend.handles && rend.handles.length >= 0) rend.handles[0].instancer.inst.renderOrder = -90;
     }
 
     static CreateMaterial_1() {

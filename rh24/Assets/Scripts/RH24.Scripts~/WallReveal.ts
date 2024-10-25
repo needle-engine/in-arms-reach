@@ -5,6 +5,7 @@ import { Behaviour, GameObject } from "@needle-tools/engine";
 import { DistanceToWall } from "./DistanceToWall.js";
 import { ShaderChunk, AgXToneMapping, Vector3, Quaternion, Ray, MeshStandardMaterial, Mesh, BoxGeometry, Scene } from "three";
 import { NeedleXREventArgs } from "@needle-tools/engine";
+import { Box3 } from "three";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -58,7 +59,7 @@ export class CustomDepthSensing extends Behaviour {
         if (!(args.origin instanceof NeedleXRController)) return;
         if (!CustomDepthSensing._instance) return;
 
-        // console.log(args.origin);
+        console.log("moved pointer, checking", args.origin);
 
         // raycast into the scene
         if (args.origin instanceof NeedleXRController) {
@@ -70,9 +71,26 @@ export class CustomDepthSensing extends Behaviour {
             this.ray.set(args.space.worldPosition, args.space.worldForward);
         }
 
+        // visualize ray
+        if (debug)
+            Gizmos.DrawLine(this.ray.origin, this.ray.origin.clone().add(this.ray.direction.clone().multiplyScalar(5)), 0xffff00, 2);
+
         const wallObjects = DistanceToWall._instances;
-        const intersections = this.context.physics.raycastFromRay(this.ray, { targets: wallObjects });
+        for (const wall of wallObjects) 
+            wall.layers.set(0);
+
+        const intersections = this.context.physics.raycastFromRay(this.ray, { targets: wallObjects, useAcceleratedRaycast: false });
         
+        if (debug)
+            console.log("Walls", wallObjects, "Intersections", intersections);
+
+        if (debug) {
+            for (const w of wallObjects) {
+                const bounds = new Box3().setFromObject(w);
+                Gizmos.DrawWireBox3(bounds, 0xff0000);
+            }
+        }
+
         if (intersections.length > 0) {
             const i = intersections[0];
             const p = i.point;
