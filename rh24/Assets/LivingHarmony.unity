@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5181954, g: 0.54349375, b: 0.3778543, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7886,7 +7885,7 @@ MonoBehaviour:
   DirectoryName: ../needle
   RemoteUrl: 
   AutoExport: 1
-  AutoCompress: 1
+  AutoCompress: 0
   Dependencies:
   - Name: rh24.scripts
     VersionOrPath: Assets/Scripts/RH24.Scripts.npmdef
@@ -17522,8 +17521,11 @@ MonoBehaviour:
   createSendToQuestButton: 1
   createQRCode: 0
   usePlacementReticle: 0
+  customARPlacementReticle: {fileID: 0}
   usePlacementAdjustment: 0
-  arSceneScale: 1
+  arScale: 1
+  autoPlace: 0
+  autoCenter: 0
   useXRAnchor: 0
   useQuicklookExport: 0
   useDepthSensing: 0
@@ -17574,6 +17576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataTemplate: {fileID: 810017252}
+  occluder: 1
   initiateRoomCaptureIfNoData: 1
   usePlaneData: 1
   useMeshData: 0
@@ -32406,6 +32409,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ff7c58b80e8321bbc6f005db9ceb55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2022250600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2022250602}
+  - component: {fileID: 2022250601}
+  m_Layer: 0
+  m_Name: NeedleMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2022250601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022250600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d2c67ae7e4416a98aa03d96398832b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _position: 1
+  ShowNeedleLogo: 1
+  CreateFullscreenButton: 0
+  CreateMuteButton: 0
+  CreateQRCodeButton: 1
+  ShowSpatialMenu: 1
+--- !u!4 &2022250602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022250600}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026474163
 GameObject:
   m_ObjectHideFlags: 0
@@ -32450,11 +32503,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3678e6ee7af44e4d9fecf9a0f082ba74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomName: LivingHarmony
-  urlParameterName: room
   joinRandomRoom: 0
-  requireRoomParameter: 0
   autoRejoin: 1
+  roomPrefix: LivingHarmony
+  urlParameterName: room
+  requireRoomParameter: 0
+  createJoinButton: 0
+  createViewOnlyButton: 0
 --- !u!1 &2032942762
 GameObject:
   m_ObjectHideFlags: 0
@@ -33365,3 +33420,4 @@ SceneRoots:
   - {fileID: 710590986981539948}
   - {fileID: 1134216493}
   - {fileID: 1720792999}
+  - {fileID: 2022250602}

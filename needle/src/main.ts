@@ -1,4 +1,4 @@
-import "@needle-tools/engine";
+import("@needle-tools/engine") /* async import of needle engine */;
 
 import App from './App.svelte';
 

@@ -11,7 +11,7 @@ export class SineMove extends Behaviour {
     @serializable()
     move: number = 1;
 
-    @serializable()
+    @serializable(Vector3)
     moveMultiplier: Vector3 = new Vector3(1,1,1);
 
     private e: Euler = new Euler();

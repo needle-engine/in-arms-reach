@@ -127,6 +127,7 @@ export class CustomDepthSensing extends Behaviour {
 
     public static rigGuid: string = "";
 
+
     awake() {
 
         // find Rig
@@ -137,6 +138,8 @@ export class CustomDepthSensing extends Behaviour {
 
         // adjust tonemapping if wanted
         this.context.renderer.toneMapping = AgXToneMapping;
+
+        /*
 
         // Patch three.js shader chunks responsible for depth sensing.
         ShaderChunk.occlusion_fragment = ShaderChunk.occlusion_fragment.replace(
@@ -159,6 +162,8 @@ gl_FragColor.rgb += vec3(absDistance * 2.0, absDistance * 2.0, absDistance * 12.
 gl_FragColor = mix(gl_FragColor, vec4(0.0, 0.0, 0.0, 0.0), occlusion * 0.7);
 
 `);
+    */
 
     }
+
 }

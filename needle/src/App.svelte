@@ -46,8 +46,9 @@ $: _isQuest = isQuest();
 
 <Menu bind:context={context}></Menu>
 
+<!--
 <MadeWithNeedle></MadeWithNeedle>
-
+-->
 <style>
 
 div.logo {

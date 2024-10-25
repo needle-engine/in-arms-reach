@@ -27,13 +27,14 @@ Material:
   m_ValidKeywords:
   - _BUILTIN_SURFACE_TYPE_TRANSPARENT
   - _TEXTURE_TRANSFORM_ON
-  - _VERTEX_COLORS_ON
+  - _VOLUME_TRANSMISSION_OFF
   m_InvalidKeywords:
   - _ALPHABLEND_ON
   - _BUILTIN_ALPHABLEND_ON
   - _DISABLE_SSR_TRANSPARENT
   - _ENABLE_FOG_ON_TRANSPARENT
   - _NORMALMAP
+  - _VERTEX_COLORS_ON
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -122,6 +123,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - sheenColorTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - sheenRoughnessTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - specularColorTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -166,6 +175,7 @@ Material:
     - _OcclusionStrength: 1
     - _OverrideSurfaceMode: 1
     - _Parallax: 0.02
+    - _SHEEN: 0
     - _SPECULAR: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -186,6 +196,7 @@ Material:
     - clearcoatRoughnessTextureTexCoord: 0
     - clearcoatTextureRotation: 0
     - clearcoatTextureTexCoord: 0
+    - dispersion: 0
     - emissiveTextureRotation: 0
     - emissiveTextureTexCoord: 0
     - ior: 1.5
@@ -207,6 +218,11 @@ Material:
     - occlusionTextureRotation: 0
     - occlusionTextureTexCoord: 0
     - roughnessFactor: 0
+    - sheenColorTextureRotation: 0
+    - sheenColorTextureTexCoord: 0
+    - sheenRoughnessFactor: 0
+    - sheenRoughnessTextureRotation: 0
+    - sheenRoughnessTextureTexCoord: 0
     - specularColorTextureRotation: 0
     - specularColorTextureTexCoord: 0
     - specularFactor: 1
@@ -224,5 +240,6 @@ Material:
     - attenuationColor: {r: 1, g: 1, b: 1, a: 0}
     - baseColorFactor: {r: 0.10760058, g: 0.43696907, b: 0.5849056, a: 0.77254903}
     - emissiveFactor: {r: 0, g: 0, b: 0, a: 1}
+    - sheenColorFactor: {r: 0, g: 0, b: 0, a: 0}
     - specularColorFactor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
