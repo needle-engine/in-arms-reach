@@ -102,7 +102,6 @@ export class DistanceToWall extends Behaviour {
         this.lastPointerId = args.pointerId;
 
         if (debug) {
-            console.log("POINTER CLICk")
             Gizmos.DrawLine(args.point, args.event.space.worldPosition, undefined, 5);
         }
 
