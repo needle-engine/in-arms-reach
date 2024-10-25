@@ -1,11 +1,9 @@
-import { Behaviour, Context, GameObject, Gizmos, IPointerEventHandler, ObjectRaycaster, OrbitControls, PointerEventData, getParam } from "@needle-tools/engine";
+import { Behaviour, Context, GameObject, Gizmos, ObjectRaycaster, OrbitControls, PointerEventData, getParam } from "@needle-tools/engine";
 import { CustomDepthSensing } from "./WallReveal";
 import { Matrix4, Quaternion, Ray, Vector3 } from "three";
-import { Renderer } from "@needle-tools/engine";
 import { NeedleXRController } from "@needle-tools/engine";
 import { syncInstantiate } from "@needle-tools/engine";
 import { syncDestroy } from "@needle-tools/engine";
-import { NEPointerEvent } from "@needle-tools/engine";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -13,7 +11,7 @@ const debug = getParam("debugrh");
 const debugReach = getParam("reach");
 const noSpawn = getParam("nospawn");
 
-export class DistanceToWall extends Behaviour implements IPointerEventHandler {
+export class DistanceToWall extends Behaviour {
     
     // 1: draw occlusion
     // 2: clean occlusion depth with "cleaner" objects that reset depth to far plane
@@ -25,12 +23,15 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
 
     onEnable() {
         // check if we have a raycaster, add one otherwise
-        this.gameObject.addNewComponent(ObjectRaycaster);
+        this.gameObject.addComponent(ObjectRaycaster);
         DistanceToWall._instances.push(this.gameObject);
+
+        console.log("DistanceToWall enabled");
     }
 
     onDisable() {
         DistanceToWall._instances = DistanceToWall._instances.filter(x => x !== this.gameObject);
+        console.log("DistanceToWall disabled");
     }
 
     onPointerEnter(args: PointerEventData) {
@@ -82,8 +83,9 @@ export class DistanceToWall extends Behaviour implements IPointerEventHandler {
         return this._orbit;
     }
     private static _orbit: OrbitControls|null = null;
+    // for hands
     onPointerDown(args: PointerEventData) {
-
+        console.log("POINTER DOWN")
         // We can completely disable this once we have proper "touch wall" logic in place
         if (!debugReach && args.event.origin instanceof NeedleXRController) return;
         if (!args.point) return;

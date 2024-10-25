@@ -1,8 +1,7 @@
 import { Behaviour, GameObject, WebXRPlaneTracking, serializable, syncField } from "@needle-tools/engine";
-import { isQuest } from "@needle-tools/engine";
 import { PlayerState } from "@needle-tools/engine";
 import { ShadowCatcher } from "@needle-tools/engine";
-import { WebXRPlaneTrackingEvent } from "@needle-tools/engine";
+import { WebXRPlaneTrackingEvent, DeviceUtilities } from "@needle-tools/engine";
 import { Mesh, Material, Matrix4, Vector3 } from "three";
 
 class MeshData {
@@ -25,7 +24,7 @@ export class NetworkedMesh extends Behaviour {
         if (!PlayerState.isLocalPlayer(this.gameObject)) return;
 
         // we only want to share Quest planes for now
-        if (!isQuest()) return;
+        if (!DeviceUtilities.isQuest()) return;
 
         const planeTracking = GameObject.findObjectOfType(WebXRPlaneTracking);
         planeTracking?.addEventListener("plane-tracking", this.onPlaneTracking);

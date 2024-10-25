@@ -51,6 +51,7 @@ export class CustomDepthSensing extends Behaviour {
     }
     
     private ray: Ray = new Ray();
+    // for XR controllers
     pointerMove(args: NEPointerEvent) {
         if (debugReach) return;
         // only makes sense for XR controllers / spatial controllers
