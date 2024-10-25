@@ -89,7 +89,6 @@ export class DistanceToWall extends Behaviour {
     private static _orbit: OrbitControls|null = null;
     // for hands
     onPointerDown(args: PointerEventData) {
-        console.log("POINTER DOWN")
         // We can completely disable this once we have proper "touch wall" logic in place
         if (!debugReach && args.event.origin instanceof NeedleXRController) return;
         if (!args.point) return;
