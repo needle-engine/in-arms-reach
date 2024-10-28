@@ -1,4 +1,4 @@
-import { Behaviour, GameObject, PointerEventData, serializable } from "@needle-tools/engine";
+import { Behaviour, GameObject, PointerEventData, serializable, EventList } from "@needle-tools/engine";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -10,6 +10,9 @@ export class SceneButton extends Behaviour {
     @serializable(GameObject)
     outer: GameObject;
 
+    @serializable(EventList)
+    triggerEventCustom? : EventList;
+
     private innerScale: number = 1.0;
     private outerScale: number = 1.0;
 
@@ -18,7 +21,7 @@ export class SceneButton extends Behaviour {
         this.outerScale = this.outer.scale.x;
     }
 
-    onPointerEnter(args: PointerEventData) {
+     onPointerEnter(args: PointerEventData) {
         const val = this.innerScale * 1.05;
         this.inner.scale.set(val, val, val);
 
@@ -32,5 +35,9 @@ export class SceneButton extends Behaviour {
 
         const val2 = this.outerScale;
         this.outer.scale.set(val2, val2, val2);
+    } 
+
+    runTriggerEvent() {
+        this.triggerEventCustom?.invoke();
     }
 }

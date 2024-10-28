@@ -9,9 +9,11 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public UnityEngine.GameObject @inner;
 		public UnityEngine.GameObject @outer;
+		public UnityEngine.Events.UnityEvent @triggerEventCustom;
 		public void OnEnable(){}
 		public void onPointerEnter(UnityEngine.EventSystems.PointerEventData @args){}
 		public void onPointerExit(UnityEngine.EventSystems.PointerEventData @args){}
+		public void runTriggerEvent(){}
 	}
 }
 
