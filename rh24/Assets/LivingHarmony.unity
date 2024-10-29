@@ -25187,6 +25187,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2615754793832564669, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2700555443084184517, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Interactable
       value: 0
@@ -25194,6 +25198,10 @@ PrefabInstance:
     - target: {fileID: 3012221712616567911, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012221712616567911, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3492226048009343781, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
@@ -25330,6 +25338,10 @@ PrefabInstance:
     - target: {fileID: 7140806950482354174, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140806950482354174, guid: 3674b059161f690499678610f3143563, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8077399892133636344, guid: 3674b059161f690499678610f3143563, type: 3}
       propertyPath: m_SceneBindings.Array.size
