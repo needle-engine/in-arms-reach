@@ -7707,6 +7707,7 @@ GameObject:
   - component: {fileID: 448345036}
   - component: {fileID: 448345039}
   - component: {fileID: 448345040}
+  - component: {fileID: 448345041}
   m_Layer: 0
   m_Name: Export Info
   m_TagString: EditorOnly
@@ -7792,6 +7793,22 @@ MonoBehaviour:
     title: In Arm's Reach
     description: MIT RealityHack 2024 Entry
     image: {fileID: 2800000, guid: f5afcc3efb2064dc4a77bd17b59bd4e4, type: 3}
+--- !u!114 &448345041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448345035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52882cd15871496cba5a3596b2e735c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllowProgressiveLoading: 0
+  UseMaxSize: 1
+  MaxSize: 128
+  GenerateLODs: 1
 --- !u!1 &453763673
 GameObject:
   m_ObjectHideFlags: 0
