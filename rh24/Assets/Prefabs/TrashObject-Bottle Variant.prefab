@@ -134,6 +134,38 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5320033851796509992, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320033851796509992, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320033851796509992, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1428962492006331933}
+    - target: {fileID: 5320033851796509992, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320033851796509992, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: runTriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320033851796509992, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Needle.Typescript.GeneratedComponents.TrashObjectTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320033851796509992, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320033851796509992, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7546157869191811966, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
       propertyPath: m_Name
       value: TrashObject-Bottle Variant
@@ -144,10 +176,74 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3902737479453884587, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7060110802773015205}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7546157869191811966, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1428962492006331933}
   m_SourcePrefab: {fileID: 100100000, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
 --- !u!4 &1830495270574228263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3902737479453884587, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+  m_PrefabInstance: {fileID: 3408792600871682956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5073414675103468048 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7576766560155732380, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+  m_PrefabInstance: {fileID: 3408792600871682956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fad565c1e57d99ac5f23ad4732f28be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5185649052294680818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7546157869191811966, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
+  m_PrefabInstance: {fileID: 3408792600871682956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1428962492006331933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185649052294680818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ad0e267cfb1a7a7e49a9aad9b861f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerEventCustom:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6115077837421667821}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hide
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5073414675103468048}
+        m_TargetAssemblyTypeName: Needle.Typescript.GeneratedComponents.PlaySoundCustom,
+          Assembly-CSharp
+        m_MethodName: play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hide
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!95 &6115077837421667821 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8904575425197254241, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
   m_PrefabInstance: {fileID: 3408792600871682956}
   m_PrefabAsset: {fileID: 0}
