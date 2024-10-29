@@ -17279,7 +17279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf409ffccda34166b926284faafa75c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createVRButton: 1
+  createVRButton: 0
   createARButton: 1
   createSendToQuestButton: 1
   createQRCode: 0
@@ -32118,6 +32118,14 @@ PrefabInstance:
     - target: {fileID: 3263889027610810628, guid: 06ab86c61aca77a48b35aaeb725c1cdf, type: 3}
       propertyPath: m_Name
       value: SpatialTrigger-Debug-Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 3263889027610810628, guid: 06ab86c61aca77a48b35aaeb725c1cdf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3263889027610810628, guid: 06ab86c61aca77a48b35aaeb725c1cdf, type: 3}
+      propertyPath: m_TagString
+      value: EditorOnly
       objectReference: {fileID: 0}
     - target: {fileID: 3866165726575920431, guid: 06ab86c61aca77a48b35aaeb725c1cdf, type: 3}
       propertyPath: m_Name
