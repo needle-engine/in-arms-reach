@@ -141,6 +141,11 @@ export class DistanceToWall extends Behaviour {
         // random scale between 0.6 and 1
         const scale = (Math.random() * 0.4 + 0.6) * 0.3;
         const scaleVec = new Vector3(scale, scale, scale);
+        
+        if (!DistanceToWall.hadFirstPlacement) {
+            DistanceToWall.hadFirstPlacement = true;
+            CustomDepthSensing.instance.firstPlacement(args.point, worldRot);
+        }
 
         if (!noSpawn) {
             const clone = syncInstantiate(obj, {
@@ -153,11 +158,6 @@ export class DistanceToWall extends Behaviour {
             if (!clone) return;
 
             this.allClones.push(clone);
-        }
-
-        if (!DistanceToWall.hadFirstPlacement) {
-            DistanceToWall.hadFirstPlacement = true;
-            CustomDepthSensing.instance.firstPlacement(args.point, worldRot);
         }
         // clone?.lookAt(normal.add(args.point));
     }
