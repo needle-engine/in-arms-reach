@@ -19,7 +19,7 @@ export class SwitchScene extends Behaviour {
     }
 
     setScene(index: number) {
-        console.log("set scene", index);
+        console.warn("Set scene", index);
 
         // we want to wait for first placement again
         DistanceToWall.hadFirstPlacement = false;
