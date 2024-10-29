@@ -252,7 +252,6 @@ GameObject:
   - component: {fileID: 551480953942222892}
   - component: {fileID: 1416958488203816725}
   - component: {fileID: 6425210318701001212}
-  - component: {fileID: 2140231261041016480}
   m_Layer: 0
   m_Name: Scene Button
   m_TagString: Untagged
@@ -450,43 +449,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2140231261041016480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679744564010537981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90522fc79517459a92915e809fe9c0d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  OnEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6425210318701001212}
-        m_TargetAssemblyTypeName: Needle.Typescript.GeneratedComponents.SceneButton,
-          Assembly-CSharp
-        m_MethodName: runTriggerEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnStay:
-    m_PersistentCalls:
-      m_Calls: []
-  OnExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7796892862079124968
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +461,7 @@ GameObject:
   - component: {fileID: 4918485720367190098}
   - component: {fileID: 3373670676450823993}
   - component: {fileID: 7686497282497276361}
+  - component: {fileID: 5227556735135751094}
   m_Layer: 0
   m_Name: Rim
   m_TagString: Untagged
@@ -628,3 +591,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5227556735135751094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7796892862079124968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90522fc79517459a92915e809fe9c0d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6425210318701001212}
+        m_TargetAssemblyTypeName: Needle.Typescript.GeneratedComponents.SceneButton,
+          Assembly-CSharp
+        m_MethodName: runTriggerEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStay:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
