@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.needle.engine-exporter": "3.49.0-pre",
+    "com.needle.engine-exporter": "3.50.0-pre",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "2.4.4",
     "com.unity.feature.development": "1.0.1",

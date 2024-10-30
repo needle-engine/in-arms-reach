@@ -1,6 +1,7 @@
 import { Behaviour, InstancingHandler, Renderer, serializable } from "@needle-tools/engine";
+import { DoubleSide } from "three";
 import { AlwaysDepth, EqualStencilFunc, MeshBasicMaterial, NotEqualStencilFunc } from "three";
-import { ShaderMaterial } from "three/src/materials/ShaderMaterial";
+import { ShaderMaterial } from "three";
 
 // Documentation → https://docs.needle.tools/scripting
 
@@ -21,8 +22,8 @@ export class HoleCutter extends Behaviour {
         }
 
         if (!HoleCutter.DepthCutDoubleMat) {
-            HoleCutter.DepthCutDoubleMat = HoleCutter.DepthCutMat.clone();
-            HoleCutter.DepthCutDoubleMat.side = 2;
+            HoleCutter.DepthCutDoubleMat = HoleCutter.makeMat();
+            HoleCutter.DepthCutDoubleMat.side = DoubleSide;
         }
 
         let rend = this.gameObject.getComponentInChildren(Renderer)!;
@@ -70,12 +71,16 @@ export class HoleCutter extends Behaviour {
     }
 
     static CreateMaterial_2() {
-        HoleCutter.DepthCutMat = new MeshBasicMaterial();
-        HoleCutter.DepthCutMat.depthFunc = AlwaysDepth;
-        HoleCutter.DepthCutMat.depthWrite = true;
-        HoleCutter.DepthCutMat.depthTest = true;
-        HoleCutter.DepthCutMat.colorWrite = true;
-        HoleCutter.DepthCutMat.onBeforeCompile = (shader) => {
+        HoleCutter.DepthCutMat = this.makeMat();
+    }
+
+    static makeMat(): MeshBasicMaterial {
+        const mat = new MeshBasicMaterial();
+        mat.depthFunc = AlwaysDepth;
+        mat.depthWrite = true;
+        mat.depthTest = true;
+        mat.colorWrite = true;
+        mat.onBeforeCompile = (shader) => {
             shader.extensionFragDepth = true;
             shader.fragmentShader = shader.fragmentShader.replace(
                 `vec4 diffuseColor = vec4( diffuse, opacity );`,
@@ -87,6 +92,7 @@ export class HoleCutter extends Behaviour {
                 vec4 diffuseColor = vec4( diffuse, opacity );`
             );
         };
-        HoleCutter.DepthCutMat.depthFunc = AlwaysDepth;
+        mat.depthFunc = AlwaysDepth;
+        return mat;
     }
 }

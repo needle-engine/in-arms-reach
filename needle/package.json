@@ -9,7 +9,7 @@
     "gltf:transform": "npm run transform --prefix node_modules/@needle-tools/gltf-build-pipeline"
   },
   "dependencies": {
-	  "@needle-tools/engine": "^3.49.0-beta",
+	  "@needle-tools/engine": "^3.50.0-beta",
 	  "rh24.scripts": "file:./../rh24/Assets/Scripts/RH24.Scripts~",
 	  "three": "npm:@needle-tools/three@^0.162.10",
 	  "vite-plugin-pwa": "^0.20.5"
