@@ -4,12 +4,12 @@
   "main": "index.ts",
   "dependencies": {},
   "peerDependencies": {
-	  "@needle-tools/engine": "^3.50.0-beta",
-	  "three": "npm:@needle-tools/three@^0.162.10"
+	  "@needle-tools/engine": "5.1.0-alpha.3",
+	  "three": "npm:@needle-tools/three@0.169.19"
 	},
   "devDependencies": {
-	  "@needle-tools/engine": "^3.50.0-beta",
-	  "three": "npm:@needle-tools/three@^0.162.10",
-	  "@types/three": "0.162.0"
+	  "@needle-tools/engine": "5.1.0-alpha.3",
+	  "three": "npm:@needle-tools/three@0.169.19",
+	  "@types/three": "0.169.0"
 	}
 }

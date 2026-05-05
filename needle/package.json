@@ -9,22 +9,22 @@
     "gltf:transform": "npm run transform --prefix node_modules/@needle-tools/gltf-build-pipeline"
   },
   "dependencies": {
-	  "@needle-tools/engine": "^3.50.0-beta",
-	  "rh24.scripts": "file:./../rh24/Assets/Scripts/RH24.Scripts~",
-	  "three": "npm:@needle-tools/three@^0.162.10",
+	  "@needle-tools/engine": "5.1.0-alpha.3",
+	  "rh24.scripts": "file:../rh24/Assets/Scripts/RH24.Scripts~",
+	  "three": "npm:@needle-tools/three@0.169.19",
 	  "vite-plugin-pwa": "^0.20.5"
 	},
   "devDependencies": {
-    "@needle-tools/helper": "1.10.1",
-    "@sveltejs/vite-plugin-svelte": "^2.0.4",
-    "@tsconfig/svelte": "^5.0.0",
-    "@types/three": "0.162.0",
-    "@vitejs/plugin-basic-ssl": "^1.0.1",
-    "svelte": "^4.1.1",
-    "svelte-check": "^3.1.4",
-    "svelte-preprocess": "^5.0.3",
-    "typescript": "^5.0.2",
-    "vite": "4.3.9",
-    "vite-plugin-compression": "^0.5.1"
-  }
+	  "@needle-tools/helper": "2.0.0",
+	  "@sveltejs/vite-plugin-svelte": "^2.0.4",
+	  "@tsconfig/svelte": "^5.0.0",
+	  "@types/three": "0.169.0",
+	  "@vitejs/plugin-basic-ssl": "^1.0.1",
+	  "svelte": "^4.1.1",
+	  "svelte-check": "^3.1.4",
+	  "svelte-preprocess": "^5.0.3",
+	  "typescript": "^5.0.2",
+	  "vite": "4.3.9",
+	  "vite-plugin-compression": "^0.5.1"
+	}
 }

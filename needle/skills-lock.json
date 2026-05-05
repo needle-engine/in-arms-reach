@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "needle-engine": {
+      "source": "needle-tools/ai",
+      "sourceType": "github",
+      "skillPath": "providers/claude/plugin/skills/needle-engine/SKILL.md",
+      "computedHash": "60d581b23494afa9b1835c0f57e6d23fd6ba722a3c5c2138304de8243c0bfbd0"
+    }
+  }
+}

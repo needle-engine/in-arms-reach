@@ -1,0 +1,61 @@
+{
+  "skill_name": "needle-engine",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a ball the player rolls with WASD. When keys are released the ball should stop quickly. Write a BallController component for Needle Engine.",
+      "expected_output": "Uses applyImpulse (not applyForce) for movement, uses getVelocity/setVelocity to brake on release (not _body internal access)",
+      "files": [],
+      "assertions": [
+        {"text": "Uses applyImpulse for movement input, not applyForce", "type": "output_check"},
+        {"text": "Uses rb.getVelocity() and rb.setVelocity() for braking, not (rb as any)._body", "type": "output_check"},
+        {"text": "Uses SphereCollider for the ball, not BoxCollider", "type": "output_check"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add bloom and vignette post-processing to my Needle Engine scene from code, and let me toggle bloom on/off at runtime.",
+      "expected_output": "Uses this.context.postprocessing.addEffect(), not Volume component. Uses .enabled to toggle, not .active",
+      "files": [],
+      "assertions": [
+        {"text": "Uses this.context.postprocessing.addEffect() as the primary API", "type": "output_check"},
+        {"text": "Does not create a Volume component to add effects", "type": "output_check"},
+        {"text": "Uses bloom.enabled = false to toggle, not bloom.active", "type": "output_check"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need physics for a bowling game in Needle Engine — pins are cylinder-shaped, ball is a sphere. Set up the colliders and rigidbodies from code.",
+      "expected_output": "Uses SphereCollider for ball, CapsuleCollider for pins, not BoxCollider for everything",
+      "files": [],
+      "assertions": [
+        {"text": "Uses SphereCollider for the bowling ball", "type": "output_check"},
+        {"text": "Uses CapsuleCollider for the bowling pins, not BoxCollider", "type": "output_check"},
+        {"text": "Adds Rigidbody components to dynamic objects", "type": "output_check"}
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Write a Needle Engine component that makes an object smoothly follow another object's position each frame. The target object is assigned as a field.",
+      "expected_output": "Uses worldPosition getter/setter directly or getTempVector, not .clone() or new Vector3() in update loop",
+      "files": [],
+      "assertions": [
+        {"text": "Does not call .clone() in the update loop", "type": "output_check"},
+        {"text": "Does not allocate new Vector3() in the update loop", "type": "output_check"},
+        {"text": "Uses worldPosition setter or getTempVector for position math", "type": "output_check"}
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Set up a GitHub Actions workflow to deploy my Needle Engine project on every push to main.",
+      "expected_output": "Uses needle-tools/deploy-to-needle-cloud-action@v1, not GitHub Pages, not npx needle-cloud deploy in a run step",
+      "files": [],
+      "assertions": [
+        {"text": "Uses needle-tools/deploy-to-needle-cloud-action@v1", "type": "output_check"},
+        {"text": "Does not use 'npx needle-cloud deploy' in a run step", "type": "output_check"},
+        {"text": "Does not use GitHub Pages deployment", "type": "output_check"},
+        {"text": "Includes a name parameter for the project", "type": "output_check"}
+      ]
+    }
+  ]
+}

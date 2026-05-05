@@ -21,20 +21,23 @@ import { TrashObjectTrigger } from "../TrashObjectTrigger.js";
 import { CustomDepthSensing } from "../WallReveal.js";
 
 // Register types
-TypeStore.add("CamRotator", CamRotator);
-TypeStore.add("CustomOccluder", CustomOccluder);
-TypeStore.add("DistanceToWall", DistanceToWall);
-TypeStore.add("HoleBorder", HoleBorder);
-TypeStore.add("HoleCutter", HoleCutter);
-TypeStore.add("LookFollow", LookFollow);
-TypeStore.add("NetworkedMesh", NetworkedMesh);
-TypeStore.add("PlaySoundCustom", PlaySoundCustom);
-TypeStore.add("QuickLookSpecifics", QuickLookSpecifics);
-TypeStore.add("RandomSound", RandomSound);
-TypeStore.add("RevealObj", RevealObj);
-TypeStore.add("SceneButton", SceneButton);
-TypeStore.add("SineMove", SineMove);
-TypeStore.add("SwitchScene", SwitchScene);
-TypeStore.add("Tagalong", Tagalong);
-TypeStore.add("TrashObjectTrigger", TrashObjectTrigger);
-TypeStore.add("CustomDepthSensing", CustomDepthSensing);
+export function registerTypes() {
+	TypeStore.add("CamRotator", CamRotator);
+	TypeStore.add("CustomOccluder", CustomOccluder);
+	TypeStore.add("DistanceToWall", DistanceToWall);
+	TypeStore.add("HoleBorder", HoleBorder);
+	TypeStore.add("HoleCutter", HoleCutter);
+	TypeStore.add("LookFollow", LookFollow);
+	TypeStore.add("NetworkedMesh", NetworkedMesh);
+	TypeStore.add("PlaySoundCustom", PlaySoundCustom);
+	TypeStore.add("QuickLookSpecifics", QuickLookSpecifics);
+	TypeStore.add("RandomSound", RandomSound);
+	TypeStore.add("RevealObj", RevealObj);
+	TypeStore.add("SceneButton", SceneButton);
+	TypeStore.add("SineMove", SineMove);
+	TypeStore.add("SwitchScene", SwitchScene);
+	TypeStore.add("Tagalong", Tagalong);
+	TypeStore.add("TrashObjectTrigger", TrashObjectTrigger);
+	TypeStore.add("CustomDepthSensing", CustomDepthSensing);
+}
+registerTypes();
