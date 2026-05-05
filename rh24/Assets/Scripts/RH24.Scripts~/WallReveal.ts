@@ -31,6 +31,8 @@ export class CustomDepthSensing extends Behaviour {
     onEnable() {
         GameObject.setActive(this.scenePlacement, false);
         this.context.input.addEventListener("pointermove", this.pointerMove.bind(this));
+        // Add desktop mouse movement tracking
+        document.addEventListener("mousemove", this.onDesktopMouseMove.bind(this));
     }
 
     onEnterXR(args: NeedleXREventArgs) {
@@ -49,6 +51,9 @@ export class CustomDepthSensing extends Behaviour {
         DistanceToWall.hadFirstPlacement = false;
     
         this.context.domElement.dispatchEvent(new CustomEvent("reset-placement"));
+        
+        // Clean up desktop mouse listener
+        document.removeEventListener("mousemove", this.onDesktopMouseMove.bind(this));
     }
     
     private ray: Ray = new Ray();
@@ -111,6 +116,53 @@ export class CustomDepthSensing extends Behaviour {
                 Gizmos.DrawLine(p, p.clone().add(n2!), 0xffff00, 2);
 
             DistanceToWall.checkNewPlacement({ point: p, normal: i.normal!, object: o, id: args.pointerId });
+        }
+    }
+
+    private onDesktopMouseMove(event: MouseEvent) {
+        if (debugReach) return;
+        if (!CustomDepthSensing._instance) return;
+        
+        // Only process for desktop (non-XR)
+        if (Context.Current.isInXR) return;
+
+        const camera = this.context.mainCameraComponent;
+        if (!camera) return;
+
+        // Create a ray from camera through mouse position
+        const canvas = this.context.domElement as HTMLCanvasElement;
+        const rect = canvas.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+        this.ray.origin.copy(camera.worldPosition);
+        this.ray.direction.set(x, y, 0.5).unproject(this.context.mainCamera!).sub(this.ray.origin).normalize();
+
+        if (debug)
+            Gizmos.DrawLine(this.ray.origin, this.ray.origin.clone().add(this.ray.direction.clone().multiplyScalar(5)), 0x00ff00, 2);
+
+        const wallObjects = DistanceToWall._instances;
+        for (const wall of wallObjects) 
+            wall.layers.set(0);
+
+        const intersections = this.context.physics.raycastFromRay(this.ray, { targets: wallObjects, useAcceleratedRaycast: false });
+        
+        if (intersections.length > 0) {
+            const i = intersections[0];
+            const p = i.point;
+            const n2 = i.normal?.clone();
+            const o = i.object as GameObject;
+            
+            if (n2)
+                n2.applyQuaternion(o.worldQuaternion);
+
+            // check how far from the wall we are
+            const dist = p.distanceTo(this.ray.origin);
+
+            if (debug)
+                Gizmos.DrawLine(p, p.clone().add(n2!), 0x00ff00, 2);
+
+            DistanceToWall.checkNewPlacement({ point: p, normal: i.normal!, object: o, id: "desktop-mouse" });
         }
     }
 
