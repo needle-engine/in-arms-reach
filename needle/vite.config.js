@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import viteCompression from 'vite-plugin-compression';
+import viteCompression from 'vite-plugin-compression2';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -14,19 +14,7 @@ export default defineConfig(async ({ command }) => {
             basicSsl(),
             needlePlugins(command, needleConfig, { pwa: pwaOptions }),
             svelte({}),
-            VitePWA(pwaOptions),
-            {
-                name: 'fix-gen-imports',
-                apply: 'serve',
-                transform(code, id) {
-                    if (id.includes('src/generated/gen.js')) {
-                        return code.replace(
-                            'import("./register_types.js")',
-                            'import("./register_types.ts")'
-                        );
-                    }
-                }
-            },
+            VitePWA(pwaOptions),            
             useGzip(needleConfig) ? viteCompression({ deleteOriginFile: true }) : null,
         ],
         server: {
