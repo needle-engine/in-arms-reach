@@ -49,6 +49,16 @@ const _isQuest = $derived(DeviceUtilities.isQuest());
 -->
 <style>
 
+/* Custom transparent dot cursor */
+:global(body), :global(*) {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4" fill="rgba(255, 255, 255, 0.1)" stroke="rgba(0, 0, 0, 0.3)" stroke-width="1"/></svg>') 10 10, auto !important;
+}
+
+/* Ensure clickable elements also use the custom cursor */
+:global(a), :global(button), :global([role="button"]), :global(input[type="submit"]), :global(input[type="button"]) {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4" fill="rgba(255, 255, 255, 0.1)" stroke="rgba(0, 0, 0, 0.3)" stroke-width="1"/></svg>') 10 10, auto !important;
+}
+
 div.logo {
     position:absolute;
     left: 10px;

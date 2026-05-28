@@ -160,6 +160,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  triggerObject: {fileID: 6689073294987798787}
 --- !u!95 &8379901248901375287 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8904575425197254241, guid: 351a58e8d55266047bf41d41c059f7cf, type: 3}
@@ -174,7 +175,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 4175194115948119037}
     m_Modifications:
     - target: {fileID: -5045373824169208073, guid: 1bfe37ef0256dc146b9c037e4b3b8019, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 22f4e9709919eea44bbab94c86837239, type: 2}
     - target: {fileID: -3910990755373119420, guid: 1bfe37ef0256dc146b9c037e4b3b8019, type: 3}
