@@ -13,7 +13,7 @@ export default defineConfig(async ({ command }) => {
         plugins: [
             basicSsl(),
             needlePlugins(command, needleConfig, { pwa: pwaOptions }),
-            svelte({}),
+            svelte(),
             VitePWA(pwaOptions),            
             useGzip(needleConfig) ? viteCompression({ deleteOriginFile: true }) : null,
         ],

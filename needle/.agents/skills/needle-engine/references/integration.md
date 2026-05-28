@@ -129,6 +129,102 @@ onUnmounted(() => ne.value?.removeEventListener("score-changed", onScore));
 
 ---
 
+## CDN with Import Maps (no bundler, no npm)
+
+For quick prototypes, embedding in existing sites, or projects without a build pipeline. Use `<script type="importmap">` to map bare specifiers to CDN URLs, then write standard ES module code — no Vite, no npm, no `node_modules` required.
+
+### Simple CDN (core components only, no custom code)
+
+A single script tag registers the `<needle-engine>` web component with all built-in components:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@needle-tools/engine/dist/needle-engine.min.js"></script>
+<needle-engine src="https://your-site.com/assets/scene.glb" camera-controls></needle-engine>
+```
+
+### Import maps (custom code)
+
+Unlike the single-script approach, import maps let you write custom logic with proper `import` statements:
+
+```html
+<!-- Import map MUST appear before any <script type="module"> -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/@needle-tools/engine/dist/three.min.js",
+    "@needle-tools/engine": "https://cdn.jsdelivr.net/npm/@needle-tools/engine/dist/needle-engine.min.js"
+  }
+}
+</script>
+<script type="module">
+  import { onStart, ObjectUtils } from "@needle-tools/engine";
+  import { Object3D, Vector3 } from "three";
+
+  onStart(ctx => {
+    const cube = ObjectUtils.createPrimitive("Cube", {
+      position: new Vector3(0, 0.5, 0),
+    });
+    ctx.scene.add(cube);
+  });
+</script>
+<needle-engine camera-controls environment-image="studio"></needle-engine>
+```
+
+### Full HTML page example
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Needle Engine CDN</title>
+  <style>
+    body { margin: 0; }
+    needle-engine { width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+  <needle-engine src="assets/scene.glb" camera-controls auto-rotate environment-image="studio"></needle-engine>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/@needle-tools/engine/dist/three.min.js",
+      "@needle-tools/engine": "https://cdn.jsdelivr.net/npm/@needle-tools/engine/dist/needle-engine.min.js"
+    }
+  }
+  </script>
+  <script type="module">
+    import { onStart } from "@needle-tools/engine";
+
+    onStart(ctx => {
+      console.log("Scene loaded:", ctx.scene.children.length, "root objects");
+    });
+  </script>
+</body>
+</html>
+```
+
+### CDN rules & gotchas
+
+- **three.js MUST come from Needle's dist** — map `"three"` to `@needle-tools/engine/dist/three.min.js`, NOT a standalone `three` CDN package. Needle re-exports a compatible three.js build; a separate copy causes duplicate-module issues (`instanceof` checks fail, shaders break).
+- The `<script type="importmap">` tag must appear **before** any `<script type="module">` tags — browsers reject import maps added after module loading starts.
+- Works in all modern browsers: Chrome 89+, Safari 16.4+, Firefox 108+.
+- No TypeScript — CDN import maps load plain JavaScript. For TypeScript or decorators, use the Vite workflow (`npm create needle`).
+- No tree-shaking — the CDN bundle includes all built-in components. For production apps where bundle size matters, use the Vite workflow.
+- **Do NOT mix with bundlers** — if using Vite, do not add import maps. The bundler handles resolution; an import map would cause duplicate module instances.
+
+### When to use which
+
+| Approach | Custom code | Build step | Best for |
+|---|---|---|---|
+| Simple CDN script | No | No | Embedding pre-built GLBs on existing sites |
+| CDN + import maps | Yes | No | Prototypes, demos, learning, small integrations |
+| `npm create needle` (Vite) | Yes | Yes | Production apps, TypeScript, tree-shaking, full workflow |
+
+---
+
 ## Engine Hooks Reference
 
 These standalone functions from `@needle-tools/engine` mirror the component lifecycle but work outside of a class:

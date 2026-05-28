@@ -6,9 +6,11 @@ import rhlogo from "./lib/rh-logo.png";
 
 import { SwitchScene, CamRotator } from "rh24.scripts";
 
-export let context: Context;
-
-let foldoutIsOpen = false;
+let {
+    context = $bindable()
+}: {
+    context: Context | undefined;
+} = $props();
 
 function setScene(index: number) {
     const switcher = GameObject.findObjectOfType(SwitchScene)!;
@@ -35,7 +37,7 @@ function setScene(index: number) {
         <a href="https://www.mitrealityhack.com/" target="_blank"><img src={rhlogo}/></a>
 
         {#if context}
-        <a class="light" on:click={(evt) => {
+        <a class="light" onclick={(evt) => {
             context.connection.sendDeleteRemoteStateAll();
             // recreate context
             // context.recreate();

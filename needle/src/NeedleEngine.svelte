@@ -1,9 +1,16 @@
 <script lang="ts">
 import { Context, ContextRegistry } from "@needle-tools/engine";
-  import { onMount } from "svelte";
+import { onMount } from "svelte";
 
-export let context: Context;
-export let wasPlaced: boolean;
+let {
+    context = $bindable(),
+    wasPlaced = $bindable()
+}: {
+    context: Context | undefined;
+    wasPlaced: boolean;
+} = $props();
+
+let needleEngineElement = $state<HTMLElement>();
 
 ContextRegistry.addContextCreatedCallback((_context) => {
     context = _context.context as Context;
@@ -11,14 +18,34 @@ ContextRegistry.addContextCreatedCallback((_context) => {
 
 onMount(() => {
     if (Context.Current) context = Context.Current;
+    
+    // Manually add event listeners for custom events from the web component
+    if (needleEngineElement) {
+        const handleFirstPlacement = () => {
+            wasPlaced = true;
+        };
+        
+        const handleResetPlacement = () => {
+            wasPlaced = false;
+        };
+        
+        needleEngineElement.addEventListener("first-placement", handleFirstPlacement);
+        needleEngineElement.addEventListener("reset-placement", handleResetPlacement);
+        
+        return () => {
+            if (needleEngineElement) {
+                needleEngineElement.removeEventListener("first-placement", handleFirstPlacement);
+                needleEngineElement.removeEventListener("reset-placement", handleResetPlacement);
+            }
+        };
+    } else {
+        return () => {};
+    }
 });
 
 </script>
 
-<needle-engine 
-    on:first-placement={() => { wasPlaced = true; }}
-    on:reset-placement={() => { wasPlaced = false; }}
-></needle-engine>
+<needle-engine bind:this={needleEngineElement}></needle-engine>
 
 <style>
 

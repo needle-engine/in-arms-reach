@@ -26,13 +26,17 @@ export class CustomDepthSensing extends Behaviour {
     private static _instance: CustomDepthSensing;
     public static get instance() {
         return this._instance;
-    } 
+    }
+    
+    private boundMouseMoveHandler: ((event: MouseEvent) => void) | null = null;
 
     onEnable() {
+        CustomDepthSensing._instance = this;
         GameObject.setActive(this.scenePlacement, false);
         this.context.input.addEventListener("pointermove", this.pointerMove.bind(this));
         // Add desktop mouse movement tracking
-        document.addEventListener("mousemove", this.onDesktopMouseMove.bind(this));
+        this.boundMouseMoveHandler = this.onDesktopMouseMove.bind(this);
+        /* document.addEventListener("mousemove", this.boundMouseMoveHandler); */
     }
 
     onEnterXR(args: NeedleXREventArgs) {
@@ -53,7 +57,10 @@ export class CustomDepthSensing extends Behaviour {
         this.context.domElement.dispatchEvent(new CustomEvent("reset-placement"));
         
         // Clean up desktop mouse listener
-        document.removeEventListener("mousemove", this.onDesktopMouseMove.bind(this));
+        if (this.boundMouseMoveHandler) {
+/*             document.removeEventListener("mousemove", this.boundMouseMoveHandler); */
+            this.boundMouseMoveHandler = null;
+        }
     }
     
     private ray: Ray = new Ray();
@@ -119,7 +126,7 @@ export class CustomDepthSensing extends Behaviour {
         }
     }
 
-    private onDesktopMouseMove(event: MouseEvent) {
+/*     private onDesktopMouseMove(event: MouseEvent) {
         if (debugReach) return;
         if (!CustomDepthSensing._instance) return;
         
@@ -142,6 +149,9 @@ export class CustomDepthSensing extends Behaviour {
             Gizmos.DrawLine(this.ray.origin, this.ray.origin.clone().add(this.ray.direction.clone().multiplyScalar(5)), 0x00ff00, 2);
 
         const wallObjects = DistanceToWall._instances;
+        
+        if (wallObjects.length === 0) return;
+        
         for (const wall of wallObjects) 
             wall.layers.set(0);
 
@@ -164,7 +174,7 @@ export class CustomDepthSensing extends Behaviour {
 
             DistanceToWall.checkNewPlacement({ point: p, normal: i.normal!, object: o, id: "desktop-mouse" });
         }
-    }
+    } */
 
     firstPlacement(worldPoint: Vector3, worldQuaternion: Quaternion) {
 

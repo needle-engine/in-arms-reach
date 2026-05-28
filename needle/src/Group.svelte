@@ -1,13 +1,21 @@
 <script lang="ts">
 
-export let expanded = true;
+let {
+    expanded: initialExpanded = true
+} = $props();
+
+let expanded = $state(initialExpanded);
+
+function toggleExpanded() {
+    expanded = !expanded;
+}
 
 </script>
 
 <div class="group" class:minimal={!expanded}>
 
     {#if $$slots.label}
-    <button on:click={() => expanded = !expanded}>
+    <button onclick={toggleExpanded}>
         <slot name="label"></slot>
     </button>
     {/if}
@@ -29,12 +37,14 @@ div.group {
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
 }
 
 div.group.minimal {
     background: none;
     box-shadow: none;
     padding: 12px;
+    pointer-events: auto;
 }
 
 button {
@@ -44,6 +54,12 @@ button {
     background: none;
     margin: 5px;
     font-size: 1em;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+button:hover {
+    opacity: 0.7;
 }
 
 </style>

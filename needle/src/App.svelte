@@ -1,17 +1,16 @@
 <script lang="ts">
 import NeedleEngine from "./NeedleEngine.svelte";
 import Menu from "./Menu.svelte";
-import { Context, isQuest } from "@needle-tools/engine";
+import { Context, isQuest, DeviceUtilities } from "@needle-tools/engine";
 import logo from "./lib/titleImage.png";
 import swipe from "./lib/swipe-gesture.png";
 import MadeWithNeedle from "./MadeWithNeedle.svelte";
 import laurels from "./lib/laurels-dark.png";
 
-let context: Context;
-let wasPlaced = false;
+let context = $state<Context | undefined>();
+let wasPlaced = $state(false);
 
-$: console.log("Was placed changed", wasPlaced);
-$: _isQuest = isQuest();
+const _isQuest = $derived(DeviceUtilities.isQuest());
 
 </script>
 
@@ -29,8 +28,7 @@ $: _isQuest = isQuest();
   {#if !_isQuest}
   <img src={swipe} alt="Infographic explaining to draw on the screen"/>
     <div class="anim">
-      <p>Draw to reveal</p>
-      <p class="subtitle">Sound on!</p>
+      <p>Touch to reveal</p>
     </div>
     {:else}
     <div>
@@ -40,7 +38,7 @@ $: _isQuest = isQuest();
     {/if}
   </div>
 
-<div class="touch-blocker"></div>
+<!-- <div class="touch-blocker"></div> -->
 
 <NeedleEngine bind:context={context} bind:wasPlaced={wasPlaced}></NeedleEngine>
 

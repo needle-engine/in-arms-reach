@@ -5,8 +5,7 @@ export default {
   // for more information about preprocessors
   preprocess: vitePreprocess(),
   compilerOptions: {
-    compatibility: {
-      componentApi: 4
-    }
+    // Remove legacy Svelte 4 compatibility mode
+    // Svelte 5 should use native runes system
   }
 }
