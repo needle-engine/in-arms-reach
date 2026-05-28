@@ -35,7 +35,11 @@ export class SceneButton extends Behaviour {
 
         const val2 = this.outerScale;
         this.outer.scale.set(val2, val2, val2);
-    } 
+    }
+    
+    onPointerDown(args: PointerEventData) {
+        this.runTriggerEvent();
+    }
 
     runTriggerEvent() {
         this.triggerEventCustom?.invoke();

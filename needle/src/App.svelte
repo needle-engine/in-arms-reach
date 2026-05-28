@@ -18,9 +18,9 @@ const _isQuest = $derived(DeviceUtilities.isQuest());
     <img alt="Logo" src={logo} /><br/>
 </div>
 
-<div class="laurels">
+<!-- <div class="laurels">
   <img class:hidden={wasPlaced} src={laurels} alt="Laurels" class="laurels" />
-</div>
+</div> -->
 
 <div class="vignette"></div>
 
