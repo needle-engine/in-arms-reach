@@ -7800,7 +7800,7 @@ MonoBehaviour:
   DirectoryName: ../needle
   RemoteUrl: 
   ExportOnSave: 1
-  AutoCompress: 0
+  AutoCompress: 1
   Dependencies:
   - Name: rh24.scripts
     Version: 
@@ -9158,7 +9158,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.1435529, y: 0.0015718332, z: -0.00022800297, w: 0.9896414}
   m_LocalPosition: {x: 0, y: 1.87, z: -1.3599999}
-  m_LocalScale: {x: 19.997793, y: 19.997663, z: 19.9976}
+  m_LocalScale: {x: 19.997797, y: 19.997663, z: 19.9976}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
