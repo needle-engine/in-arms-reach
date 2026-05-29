@@ -42,7 +42,7 @@ const _isQuest = $derived(DeviceUtilities.isQuest());
 
 <NeedleEngine bind:context={context} bind:wasPlaced={wasPlaced}></NeedleEngine>
 
-<Menu bind:context={context}></Menu>
+<!-- <Menu bind:context={context}></Menu> -->
 
 <!--
 <MadeWithNeedle></MadeWithNeedle>
